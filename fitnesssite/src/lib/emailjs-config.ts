@@ -1,4 +1,4 @@
-import type { EmailJSConfig } from '@/types';
+import type { EmailJSConfig } from '../types';
 
 export const getEmailJSConfig = (): EmailJSConfig => {
   const config = {
