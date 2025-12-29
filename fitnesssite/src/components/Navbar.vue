@@ -79,7 +79,7 @@
 import { ref } from 'vue';
 import { useRoute } from 'vue-router';
 import { DumbbellIcon, MenuIcon, XIcon } from './ui/icons';
-import { NAV_LINKS } from '../lib';
+import { NAV_LINKS } from '../lib/constants';
 
 const isOpen = ref(false);
 const route = useRoute();

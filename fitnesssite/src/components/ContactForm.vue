@@ -142,8 +142,8 @@
 <script setup lang="ts">
 import { reactive, ref } from 'vue';
 import emailjs from '@emailjs/browser';
-import type { FormErrors } from '@/types';
-import { getEmailJSConfig, isEmailJSConfigured } from '@/lib/emailjs-config';
+import type { FormErrors } from '../types';
+import { getEmailJSConfig, isEmailJSConfigured } from '../lib/emailjs-config';
 
 const form = reactive({
   name: '',
