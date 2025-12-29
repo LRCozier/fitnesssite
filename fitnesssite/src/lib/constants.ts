@@ -1,5 +1,5 @@
 // TYPES
-import type { Testimonials, Service } from '@/types';
+import type { Testimonials, Service } from '../types';
 
 // SITE CONFIGURATION
 export const SITE_CONFIG = {
@@ -28,7 +28,7 @@ export const NAV_LINKS = [
 ] as const;
 
 // FALLBACK TESTIMONIALS
-export const fallbackTestimonials: Readonly<Testimonials[]> = [
+export const fallbackTestimonials: Testimonials[] = [
   {
     id: '1',
     clientName: 'James P.',
@@ -73,16 +73,16 @@ export const fallbackTestimonials: Readonly<Testimonials[]> = [
     featured: false,
     createdAt: new Date('2023-12-28').toISOString(),
   },
-] as const;
+];
 
 // FALLBACK SERVICES
-export const fallbackServices: Readonly<Service[]> = [
+export const fallbackServices: Service[] = [
   {
     id: '1',
     title: '1-on-1 Personal Training',
     price: 'Enquire for Pricing',
     description:
-      "Personalised strength coaching, tailored to your goals and movement pattern.",
+      'Personalised strength coaching, tailored to your goals and movement pattern.',
     features: [
       'Individualised programming',
       'Technique correction & video feedback',
@@ -118,7 +118,7 @@ export const fallbackServices: Readonly<Service[]> = [
     intensity: 'Custom',
     recommendedFor: ['Busy professionals', 'Remote training'],
   },
-] as const;
+];
 
 // BUSINESS INFO + CONTACT
 export const BUSINESS_INFO = {
