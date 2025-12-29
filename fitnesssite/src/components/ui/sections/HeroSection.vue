@@ -32,3 +32,59 @@
 <script setup lang="ts">
 // NOTE TO SELF, ADD BACKGROUND IMAGE
 </script>
+
+<style>
+  /* Hero Section */
+.hero-section {
+  position: relative;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background-size: cover;
+  background-position: center;
+  color: white;
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+.hero-content {
+  position: relative;
+  z-index: 10;
+  padding: 1rem;
+}
+
+.hero-content h1 {
+  font-size: 2.5rem;
+  font-weight: 800;
+  letter-spacing: -0.05em;
+  line-height: 1.1;
+  color: white;
+}
+
+.hero-content h1 .block {
+  display: block;
+}
+
+.hero-content h1 .text-accent {
+  margin-top: 0.5rem;
+}
+
+.hero-content p {
+  margin-top: 1.5rem;
+  max-width: 42rem;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 1.125rem;
+  color: var(--color-text-secondary);
+}
+
+.hero-cta {
+  margin-top: 2.5rem;
+}
+</style>

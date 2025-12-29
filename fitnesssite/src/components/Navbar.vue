@@ -103,3 +103,120 @@ const handleKeyDown = (event: KeyboardEvent) => {
 
 const isActive = (href: string) => route.path === href;
 </script>
+
+<style>
+
+.navbar {
+  background-color: rgba(24, 24, 27, 0.8);
+  backdrop-filter: blur(10px);
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2);
+}
+
+.navbar-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 5rem;
+}
+
+.navbar-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: white;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.navbar-brand:hover {
+  color: var(--color-accent);
+}
+
+.navbar-logo-icon {
+  height: 2rem;
+  width: 2rem;
+  color: var(--color-accent);
+}
+
+.navbar-logo-text {
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+}
+
+.nav-links-desktop {
+  display: none;
+}
+
+.nav-link {
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.375rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--color-text-secondary);
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.nav-link:hover {
+  background-color: var(--color-bg-tertiary);
+  color: white;
+}
+
+.nav-link.active {
+  background-color: var(--color-accent);
+  color: white;
+}
+
+.mobile-menu-container {
+  display: flex;
+}
+
+.mobile-menu-button {
+  background-color: var(--color-bg-tertiary);
+  padding: 0.5rem;
+  border-radius: 0.375rem;
+  color: var(--color-text-secondary);
+  border: none;
+  cursor: pointer;
+  min-width: 44px;
+  min-height: 44px;
+}
+
+.mobile-menu-icon {
+  height: 1.5rem;
+  width: 1.5rem;
+}
+
+.nav-links-mobile {
+  padding: 0.5rem;
+  border-top: 1px solid var(--color-border);
+}
+
+.nav-link-mobile {
+  display: block;
+  padding: 0.75rem 0.5rem;
+  border-radius: 0.375rem;
+  font-weight: 500;
+  text-decoration: none;
+  color: var(--color-text-secondary);
+  transition: all 0.3s ease;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+}
+
+.nav-link-mobile:hover {
+  background-color: var(--color-bg-tertiary);
+  color: white;
+}
+
+.nav-link-mobile.active {
+  background-color: var(--color-accent);
+  color: white;
+}
+
+</style>
