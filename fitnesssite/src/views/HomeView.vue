@@ -1,7 +1,7 @@
 <template>
   <section class="section animate-fade-in">
     <div class="container">
-      <HeroSection />
+      <HeroSection/>
       <SummarySection />
       <TestimonialsSection />
     </div>
@@ -10,9 +10,9 @@
 
 <script setup lang="ts">
 import { useHead } from '@vueuse/head';
-import HeroSection from '@/components/sections/HeroSection.vue';
-import SummarySection from '@/components/sections/SummarySection.vue';
-import TestimonialsSection from '@/components/sections/TestimonialsSection.vue';
+import HeroSection from '../components/ui/sections/HeroSection.vue';
+import SummarySection from '../components/ui/sections/SummarySection.vue';
+import TestimonialsSection from '../components/ui/sections/TestimonialsSection.vue';
 
 useHead({
   title: 'LAC Fitness - Strength & Conditioning | Richmond Upon Thames',

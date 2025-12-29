@@ -13,15 +13,15 @@
     </main>
 
     <footer>
-      <Footer />
+      <Footer/>
     </footer>
   </div>
 </template>
 
 <script setup lang="ts">
 import { useHead } from '@vueuse/head';
-import Navbar from '@/components/Navbar/Navbar.vue';
-import Footer from '@/components/Footer/Footer.vue';
+import Navbar from './components/Navbar.vue';
+import Footer from './components/Footer.vue';
 
 useHead({
   title: 'LAC Fitness - Strength & Conditioning | Richmond Upon Thames',

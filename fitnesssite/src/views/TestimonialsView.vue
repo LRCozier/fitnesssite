@@ -57,9 +57,9 @@
 <script setup lang="ts">
 import { ref, computed, onMounted } from 'vue';
 import { useHead } from '@vueuse/head';
-import { getAllTestimonials } from '@/utils/graphql-utils';
-import TestimonialCard from '@/components/ui/TestimonialCard.vue';
-import type { Testimonials } from '@/types';
+import { getAllTestimonials } from '../utils/graphql-utils';
+import TestimonialCard from '../components/ui/cards/TestimonailCard.vue';
+import type { Testimonials } from '../types';
 
 const testimonials = ref<Testimonials[]>([]);
 const selectedCategory = ref<'All' | string>('All');

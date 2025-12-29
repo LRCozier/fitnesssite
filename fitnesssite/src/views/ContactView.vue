@@ -9,7 +9,7 @@
       </div>
 
       <div class="contact-form-container">
-        <ContactForm />
+        <ContactForm/>
       </div>
     </div>
   </section>
@@ -17,7 +17,7 @@
 
 <script setup lang="ts">
 import { useHead } from '@vueuse/head';
-import ContactForm from '@/components/ui/ContactForm.vue';
+import ContactForm from '../components/ContactForm.vue';
 
 useHead({
   title: 'Get In Touch',

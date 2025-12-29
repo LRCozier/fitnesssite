@@ -60,8 +60,8 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue';
 import { useHead } from '@vueuse/head';
-import { getServices } from '@/utils/graphql-utils';
-import type { Service } from '@/types';
+import { getServices } from '../utils/graphql-utils';
+import type { Service } from '../types';
 
 const services = ref<Service[]>([]);
 const loading = ref(true);

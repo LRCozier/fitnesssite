@@ -23,7 +23,7 @@
 </template>
 
 <script setup lang="ts">
-import type { Testimonials } from '@/types';
+import type { Testimonials } from '../../../types';
 
 defineProps<{
   testimonial: Testimonials;
