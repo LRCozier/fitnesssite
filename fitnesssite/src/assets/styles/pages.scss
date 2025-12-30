@@ -1,26 +1,18 @@
-/* ============================================
-   PAGE-SPECIFIC STYLES: ABOUT, SERVICES, CONTACT, FAQ, TERMS
-   ============================================ */
-
-/* About page */
-.about-grid {
-  margin-top: 4rem;
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 2rem;
-  align-items: center;
-}
-
 .about-image-container {
+  margin-top: 3rem;
   text-align: center;
 }
 
 .about-image {
   border-radius: 0.5rem;
   box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-  max-width: 100%;
+  max-width: 50%;
   -webkit-user-drag: none;
   user-select: none;
+}
+
+.about-content {
+  margin-top: 3rem;
 }
 
 .about-content h2 {
@@ -34,7 +26,11 @@
   margin-bottom: 1rem;
 }
 
-/* Contact page container (form) */
+.about-content ul {
+  margin: 0.5rem 0 1rem 1.25rem;
+}
+
+
 .contact-form-container {
   margin-top: 3rem;
   max-width: 38rem;
@@ -64,7 +60,6 @@
   color: var(--color-text-muted);
 }
 
-/* Testimonials page: category filter buttons */
 .testimonial-categories {
   display: flex;
   justify-content: center;
@@ -95,8 +90,6 @@
   color: #fff;
   transform: translateY(-1px);
 }
-
-/* ===== Services page (tabs + details) ===== */
 
 .service-tabs {
   margin-top: 3rem;
@@ -218,8 +211,6 @@
   font-size: 0.875rem;
   color: var(--color-text-muted);
 }
-
-/* ===== FAQ page ===== */
 
 .faq-filters {
   margin-top: 3rem;
