@@ -36,8 +36,6 @@
 
 <script setup lang="ts">
 import BaseButton from '../BaseButton.vue';
-
-// NOTE TO SELF, ADD BACKGROUND IMAGE
 </script>
 
 <style>
@@ -49,6 +47,7 @@ import BaseButton from '../BaseButton.vue';
   align-items: center;
   justify-content: center;
   text-align: center;
+  background-image: url('../../../assets/heroimage.jpg');
   background-size: cover;
   background-position: center;
   color: white;
