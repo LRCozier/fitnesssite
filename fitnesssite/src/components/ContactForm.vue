@@ -105,8 +105,8 @@ const serviceOptions: CheckboxOption[] = [
   },
   {
     value: 'online',
-    label: 'Online Coaching & Programming',
-    description: 'Remote coaching, weekly check-ins, and video feedback.',
+    label: 'Online Consultation & Programming',
+    description: 'Initial video consultation and bespoke training programme composed.',
   },
 ];
 
@@ -184,6 +184,7 @@ const onSubmit = async () => {
       emailConfig.templateId,
       {
         from_name: form.name,
+        from_email: form.email,
         reply_to: form.email,
         message: form.message,
         services: form.services.join(', '),

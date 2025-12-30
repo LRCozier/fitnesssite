@@ -3,7 +3,6 @@ import { createRouter, createWebHistory, type RouteRecordRaw } from 'vue-router'
 import HomeView from '../views/HomeView.vue';
 import AboutView from '../views/AboutView.vue';
 import ServicesView from '../views/ServicesView.vue';
-import TestimonialsView from '../views/TestimonialsView.vue';
 import ContactView from '../views/ContactView.vue';
 import FaqView from '../views/FaqView.vue';
 import TermsView from '../views/TermsView.vue';
@@ -26,12 +25,6 @@ const routes: RouteRecordRaw[] = [
     name: 'services',
     component: ServicesView,
     meta: { title: 'Services' },
-  },
-  {
-    path: '/testimonials',
-    name: 'testimonials',
-    component: TestimonialsView,
-    meta: { title: 'Client Testimonials' },
   },
   {
     path: '/contact',
