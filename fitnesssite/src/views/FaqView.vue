@@ -1,4 +1,3 @@
-<!-- src/views/FaqView.vue -->
 <template>
   <section class="section section-dark">
     <div class="container">
@@ -28,8 +27,8 @@
 </template>
 
 <script setup lang="ts">
-import FaqAccordion from '..FaqAcordion.vue';
-import BaseButton from '..BaseButton.vue';
+import FaqAccordion from '../components/ui/FaqAcordion.vue';
+import BaseButton from '../components/ui/BaseButton.vue';
 import { FAQ_ITEMS } from '../lib/constants';
 
 const faqItems = FAQ_ITEMS;
