@@ -81,7 +81,7 @@ export const fallbackServices: Service[] = [
   {
     id: '1',
     title: '1-to-1 Personal Training',
-    price: 'From £40 per hour',
+    price: 'From £40 per session',
     description:
       'Private strength coaching built around your goals, current ability, and confidence under the bar.',
     features: [
