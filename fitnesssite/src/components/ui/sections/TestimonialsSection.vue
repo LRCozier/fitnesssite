@@ -25,7 +25,7 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue';
 import { getFeaturedTestimonials } from '../../../utils/graphql-utils';
-import TestimonialCard from '@/components/ui/TestimonialCard.vue';
+import TestimonialCard from '../cards/TestimonialCard.vue';
 import type { Testimonials } from '../../../types';
 
 const testimonials = ref<Testimonials[]>([]);

@@ -1,10 +1,10 @@
 import { createRouter, createWebHistory, type RouteRecordRaw } from 'vue-router';
 
-import HomeView from '@/views/HomeView.vue';
-import AboutView from '@/views/AboutView.vue';
-import ServicesView from '@/views/ServicesView.vue';
-import TestimonialsView from '@/views/TestimonialsView.vue';
-import ContactView from '@/views/ContactView.vue';
+import HomeView from '../views/HomeView.vue';
+import AboutView from '../views/AboutView.vue';
+import ServicesView from '../views/ServicesView.vue';
+import TestimonialsView from '../views/TestimonialsView.vue';
+import ContactView from '../views/ContactView.vue';
 
 const routes: RouteRecordRaw[] = [
   {

@@ -58,7 +58,7 @@
 import { ref, computed, onMounted } from 'vue';
 import { useHead } from '@vueuse/head';
 import { getAllTestimonials } from '../utils/graphql-utils';
-import TestimonialCard from '../components/ui/cards/TestimonailCard.vue';
+import TestimonialCard from '../components/ui/cards/TestimonialCard.vue';
 import type { Testimonials } from '../types';
 
 const testimonials = ref<Testimonials[]>([]);
