@@ -39,7 +39,6 @@ import BaseButton from '../BaseButton.vue';
 </script>
 
 <style>
-  /* Hero Section */
 .hero-section {
   position: relative;
   height: 100vh;
@@ -47,7 +46,7 @@ import BaseButton from '../BaseButton.vue';
   align-items: center;
   justify-content: center;
   text-align: center;
-  background-image: url('../../../assets/heroimage2.jpg');
+  background-image: url('../../../assets/images/heroimage.jpg');
   background-size: cover;
   background-position: center;
   color: white;
