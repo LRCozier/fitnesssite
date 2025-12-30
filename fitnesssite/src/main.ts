@@ -3,7 +3,11 @@ import { createHead } from '@vueuse/head';
 
 import App from './App.vue';
 import router from './router';
-import '@/assets/globals.scss';
+import './assets/styles/base.scss';
+import './assets/styles/pages.scss';
+import './assets/styles/layout.scss';
+import './assets/styles/components.scss';
+import './assets/styles/variables.scss';
 
 const app = createApp(App);
 
