@@ -65,3 +65,45 @@ export interface BaseButtonProps {
   disabled?: boolean;
   class?: string | string[] | Record<string, boolean>;
 }
+
+export interface BaseInputProps {
+  modelValue: string;
+  id: string;
+  label: string;
+  type?: string;
+  name?: string;
+  autocomplete?: string;
+  placeholder?: string;
+  required?: boolean;
+  error?: string;
+  hint?: string;
+}
+
+export interface BaseTextareaProps {
+  modelValue: string;
+  id: string;
+  label: string;
+  name?: string;
+  placeholder?: string;
+  required?: boolean;
+  rows?: number;
+  error?: string;
+  hint?: string;
+}
+
+export interface CheckboxOption {
+  value: string;
+  label: string;
+  description?: string;
+}
+
+export interface BaseCheckboxGroupProps {
+  modelValue: string[];
+  name: string;
+  legend: string;
+  options: CheckboxOption[];
+  required?: boolean;
+  error?: string;
+  hint?: string;
+}
+
