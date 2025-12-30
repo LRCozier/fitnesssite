@@ -4,12 +4,12 @@ import type { Testimonials, Service, FAQItem } from '../types';
 // SITE CONFIGURATION
 export const SITE_CONFIG = {
   name: 'LAC Fitness',
-  title: 'Luke Cozier - Strength & Conditioning | Richmond Upon Thames',
+  title: 'Luke Cozier - Strength & Conditioning | Kingston Upon Thames',
   description:
     'Professional strength and conditioning training focused on skill progression, confidence, and functional strength. Based in Richmond Upon Thames.',
   url: 'https://lacfitness.com',
   author: 'Luke Cozier',
-  location: 'Richmond Upon Thames, London',
+  location: 'Kingston Upon Thames, London',
   email: 'lrcozier@gmail.com',
   social: {
     instagram: 'https://www.instagram.com/lacfitnessuk',
@@ -123,7 +123,7 @@ export const fallbackServices: Service[] = [
   {
     id: '3',
     title: 'Online Consultations & Tailored Programming',
-    price: 'From £39.99 per hour',
+    price: 'From £40 per hour',
     description:
       'Guidance and structure for people training independently, with programmes built around your time, equipment, and ability.',
     features: [
@@ -164,7 +164,7 @@ export const FAQ_ITEMS: FAQItem[] = [
     id: 'location',
     question: 'Where do the sessions take place?',
     answer:
-      'All in-person sessions take place at My Fit Pod, Kingston — a private, appointment-only strength facility. It’s calm, controlled, and beginner-friendly.',
+      'All in-person sessions take place at My Fit Pod, Kingston — a private, appointment-only strength facility. It’s calm, controlled, and beginner-friendly, without the noise or intimidation of a busy commercial gym. If you would prefer to train elsewhere, I can also provide alternative locations. This includes: Home training sessions (space and equipment permitting), Outdoor sessions in a mutually agreed location (parks, open spaces, private gardens), Other approved training spaces if access is arranged by the client. These options are available to make training more accessible, comfortable, and sustainable for you. Location preferences can be discussed during the consultation to ensure we find the best environment for your confidence, goals, and practical needs.',
     category: 'General',
   },
   {
@@ -220,6 +220,7 @@ export const BUSINESS_INFO = {
     'Long-term sustainability',
   ],
   areasServed: [
+    'Kingston Upon Thames',
     'Richmond Upon Thames',
     'Twickenham',
     'Kew',
