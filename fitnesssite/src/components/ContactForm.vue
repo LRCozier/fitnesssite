@@ -1,148 +1,77 @@
 <template>
-  <form class="contact-form" @submit.prevent="handleSubmit" novalidate>
+  <form class="contact-form" @submit.prevent="onSubmit">
     <!-- Name -->
-    <div class="form-group">
-      <label class="form-label" for="name">Name</label>
-      <input
-        id="name"
-        v-model.trim="form.name"
-        type="text"
-        class="form-input"
-        :class="{ error: !!errors.name }"
-        name="name"
-        autocomplete="name"
-        required
-        :aria-invalid="!!errors.name"
-        :aria-describedby="errors.name ? 'name-error' : undefined"
-      />
-      <span v-if="errors.name" id="name-error" class="form-error">
-        {{ errors.name }}
-      </span>
-    </div>
+    <BaseInput
+      v-model="form.name"
+      id="name"
+      label="Name"
+      name="name"
+      autocomplete="name"
+      required
+      :error="errors.name"
+    />
 
     <!-- Email -->
-    <div class="form-group">
-      <label class="form-label" for="email">Email</label>
-      <input
-        id="email"
-        v-model.trim="form.email"
-        type="email"
-        class="form-input"
-        :class="{ error: !!errors.email }"
-        name="email"
-        autocomplete="email"
-        required
-        :aria-invalid="!!errors.email"
-        :aria-describedby="errors.email ? 'email-error' : undefined"
-      />
-      <span v-if="errors.email" id="email-error" class="form-error">
-        {{ errors.email }}
-      </span>
-    </div>
+    <BaseInput
+      v-model="form.email"
+      id="email"
+      label="Email"
+      name="email"
+      type="email"
+      autocomplete="email"
+      required
+      :error="errors.email"
+    />
 
-    <!-- Services checkboxes -->
-    <fieldset class="form-group">
-      <legend class="form-label">What are you interested in?</legend>
-      <p class="form-hint">
-        Select all that apply.
-      </p>
-
-      <div class="services-checkbox-group">
-        <label class="service-checkbox">
-          <input
-            class="service-checkbox-input"
-            type="checkbox"
-            value="1-on-1 Personal Training"
-            v-model="form.services"
-          />
-          <div class="service-checkbox-label">
-            <span class="service-checkbox-title">1-on-1 Personal Training</span>
-            <span class="service-checkbox-description">
-              Individual coaching focused entirely on your goals and movement.
-            </span>
-          </div>
-        </label>
-
-        <label class="service-checkbox">
-          <input
-            class="service-checkbox-input"
-            type="checkbox"
-            value="Partner Training"
-            v-model="form.services"
-          />
-          <div class="service-checkbox-label">
-            <span class="service-checkbox-title">Partner / 2-on-1 Training</span>
-            <span class="service-checkbox-description">
-              Train with a partner for shared accountability and motivation.
-            </span>
-          </div>
-        </label>
-
-        <label class="service-checkbox">
-          <input
-            class="service-checkbox-input"
-            type="checkbox"
-            value="Online Coaching"
-            v-model="form.services"
-          />
-          <div class="service-checkbox-label">
-            <span class="service-checkbox-title">Online Coaching &amp; Programming</span>
-            <span class="service-checkbox-description">
-              Remote coaching with structured programming and regular check-ins.
-            </span>
-          </div>
-        </label>
-      </div>
-
-      <span v-if="errors.services" class="form-error">
-        {{ errors.services }}
-      </span>
-    </fieldset>
+    <!-- Services (checkbox group) -->
+    <BaseCheckboxGroup
+      v-model="form.services"
+      name="services"
+      legend="What are you interested in?"
+      :options="serviceOptions"
+      required
+      :error="errors.services"
+      hint="Select at least one service so I can better understand your goals."
+    />
 
     <!-- Message -->
-    <div class="form-group">
-      <label class="form-label" for="message">Tell me a bit about your goals</label>
-      <textarea
-        id="message"
-        v-model.trim="form.message"
-        class="form-textarea"
-        :class="{ error: !!errors.message }"
-        name="message"
-        rows="5"
-        required
-        :aria-invalid="!!errors.message"
-        :aria-describedby="errors.message ? 'message-error' : undefined"
-      ></textarea>
-      <span v-if="errors.message" id="message-error" class="form-error">
-        {{ errors.message }}
-      </span>
-    </div>
+    <BaseTextarea
+      v-model="form.message"
+      id="message"
+      label="Tell me about your goals"
+      name="message"
+      rows="6"
+      required
+      :error="errors.message"
+      hint="Share as much detail as you like about your training background and goals."
+    />
 
-    <!-- Status messages -->
-    <p v-if="status === 'success'" class="form-status-success">
-      Thank you – your message has been sent. I will get back to you as soon as possible.
-    </p>
-    <p v-else-if="status === 'error'" class="form-status-error">
-      {{ statusMessage || 'Something went wrong sending your message. Please try again later.' }}
+    <!-- Status text -->
+    <p v-if="statusMessage" :class="statusClass">
+      {{ statusMessage }}
     </p>
 
     <!-- Submit -->
-    <button
+    <BaseButton
+      :label="isSubmitting ? 'Sending...' : 'Submit'"
       type="submit"
-      class="btn btn-primary btn-lg"
-      :disabled="submitting || !emailJsReady"
-    >
-      <span v-if="submitting">Sending...</span>
-      <span v-else-if="!emailJsReady">Email not configured</span>
-      <span v-else>Send message</span>
-    </button>
+      variant="primary"
+      size="lg"
+      :disabled="isSubmitting || !isEmailJSReady"
+    />
   </form>
 </template>
 
 <script setup lang="ts">
-import { reactive, ref } from 'vue';
+import { reactive, ref, computed } from 'vue';
 import emailjs from '@emailjs/browser';
-import type { FormErrors } from '../types';
+
+import BaseInput from '@/components/ui/form/BaseInput.vue';
+import BaseTextarea from '@/components/ui/form/BaseTextarea.vue';
+import BaseCheckboxGroup from '@/components/ui/form/BaseCheckboxGroup.vue';
+import BaseButton from '@/components/ui/BaseButton.vue';
+
+import type { FormErrors, CheckboxOption } from '../types';
 import { getEmailJSConfig, isEmailJSConfigured } from '../lib/emailjs-config';
 
 const form = reactive({
@@ -152,37 +81,76 @@ const form = reactive({
   services: [] as string[],
 });
 
-const errors = ref<FormErrors>({});
-const status = ref<'idle' | 'success' | 'error'>('idle');
-const statusMessage = ref('');
-const submitting = ref(false);
+const errors = reactive<FormErrors>({
+  name: '',
+  email: '',
+  message: '',
+  services: '',
+});
 
-const emailJsReady = isEmailJSConfigured();
-const emailConfig = emailJsReady ? getEmailJSConfig() : null;
+const isSubmitting = ref(false);
+const statusMessage = ref('');
+const statusType = ref<'success' | 'error' | ''>('');
+
+const serviceOptions: CheckboxOption[] = [
+  {
+    value: '1on1',
+    label: '1-on-1 Personal Training',
+    description: 'Focused, personalised coaching in person.',
+  },
+  {
+    value: 'partner',
+    label: 'Partner (2-on-1) Training',
+    description: 'Train with a partner or friend for shared motivation.',
+  },
+  {
+    value: 'online',
+    label: 'Online Coaching & Programming',
+    description: 'Remote coaching, weekly check-ins, and video feedback.',
+  },
+];
+
+const emailConfig = getEmailJSConfig();
+const isEmailJSReady = computed(() => isEmailJSConfigured());
+
+const statusClass = computed(() => {
+  if (statusType.value === 'success') return 'form-status-success';
+  if (statusType.value === 'error') return 'form-status-error';
+  return '';
+});
 
 const validate = (): boolean => {
-  const newErrors: FormErrors = {};
+  errors.name = '';
+  errors.email = '';
+  errors.message = '';
+  errors.services = '';
 
-  if (!form.name) {
-    newErrors.name = 'Please enter your name.';
+  let valid = true;
+
+  if (!form.name.trim()) {
+    errors.name = 'Please enter your name.';
+    valid = false;
   }
 
-  if (!form.email) {
-    newErrors.email = 'Please enter your email address.';
+  if (!form.email.trim()) {
+    errors.email = 'Please enter your email address.';
+    valid = false;
   } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) {
-    newErrors.email = 'Please enter a valid email address.';
+    errors.email = 'Please enter a valid email address.';
+    valid = false;
   }
 
-  if (!form.message) {
-    newErrors.message = 'Please tell me a bit about your goals.';
+  if (!form.services.length) {
+    errors.services = 'Please select at least one service.';
+    valid = false;
   }
 
-  if (!form.services || form.services.length === 0) {
-    newErrors.services = 'Please select at least one service you are interested in.';
+  if (!form.message.trim()) {
+    errors.message = 'Please tell me a bit about your goals.';
+    valid = false;
   }
 
-  errors.value = newErrors;
-  return Object.keys(newErrors).length === 0;
+  return valid;
 };
 
 const resetForm = () => {
@@ -192,47 +160,46 @@ const resetForm = () => {
   form.services = [];
 };
 
-const handleSubmit = async () => {
-  status.value = 'idle';
+const onSubmit = async () => {
   statusMessage.value = '';
+  statusType.value = '';
+
+  if (!isEmailJSReady.value) {
+    statusMessage.value = 'Email service is not configured. Please try again later.';
+    statusType.value = 'error';
+    return;
+  }
 
   if (!validate()) {
+    statusMessage.value = 'Please fix the highlighted fields.';
+    statusType.value = 'error';
     return;
   }
 
-  if (!emailJsReady || !emailConfig) {
-    status.value = 'error';
-    statusMessage.value =
-      'Email is not configured correctly on the server. Please try again later or contact me directly.';
-    return;
-  }
-
-  submitting.value = true;
+  isSubmitting.value = true;
 
   try {
-    const templateParams = {
-      from_name: form.name,
-      reply_to: form.email,
-      message: form.message,
-      services: form.services.join(', '),
-    };
-
     await emailjs.send(
       emailConfig.serviceId,
       emailConfig.templateId,
-      templateParams,
+      {
+        from_name: form.name,
+        reply_to: form.email,
+        message: form.message,
+        services: form.services.join(', '),
+      },
       emailConfig.publicKey
     );
 
-    status.value = 'success';
+    statusMessage.value = 'Thanks for getting in touch. I will get back to you soon.';
+    statusType.value = 'success';
     resetForm();
-  } catch (err) {
-    console.error('EmailJS error', err);
-    status.value = 'error';
-    statusMessage.value =
-      'There was a problem sending your message. Please try again or email me directly.';
+  } catch (error) {
+    console.error('EmailJS error:', error);
+    statusMessage.value = 'Something went wrong sending your message. Please try again.';
+    statusType.value = 'error';
   } finally {
-    submitting.value = false;
+    isSubmitting.value = false;
   }
 };
 </script>
