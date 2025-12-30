@@ -8,7 +8,7 @@
         <div class="about-image-container">
           <img
             class="about-image"
-            src=""
+            src="../assets/Profile Picture.jpg"
             alt="Portrait of personal trainer Luke Cozier"
           />
         </div>
