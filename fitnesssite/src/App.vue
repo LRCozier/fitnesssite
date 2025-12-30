@@ -5,7 +5,7 @@
     </a>
 
     <header>
-      <Navbar />
+      <AppNavbar />
     </header>
 
     <main id="main-content">
@@ -13,15 +13,15 @@
     </main>
 
     <footer>
-      <Footer/>
+      <AppFooter/>
     </footer>
   </div>
 </template>
 
 <script setup lang="ts">
 import { useHead } from '@vueuse/head';
-import Navbar from './components/Navbar.vue';
-import Footer from './components/Footer.vue';
+import AppFooter from './components/layout/AppFooter.vue';
+import AppNavbar from './components/layout/AppNavbar.vue';
 
 useHead({
   title: 'LAC Fitness - Strength & Conditioning | Richmond Upon Thames',
