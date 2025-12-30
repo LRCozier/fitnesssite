@@ -27,7 +27,7 @@
             <span class="text-accent font-bold">&nbsp;reclaiming your life.</span>
           </p>
           <p>
-            I specialize in evidence-based strength and conditioning, focusing on compound movements,
+            I specialise in evidence-based strength and conditioning, focusing on compound movements,
             progressive overload, and perfect form. My approach is for those who are serious about
             long-term progress, not short-term fixes.
           </p>
