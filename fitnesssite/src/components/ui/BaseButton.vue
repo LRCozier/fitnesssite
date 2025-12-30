@@ -47,6 +47,7 @@ const buttonClasses = computed(() => {
   const base = ['btn'];
 
   if (props.variant === 'primary') base.push('btn-primary');
+  if (props.variant === 'secondary') base.push('btn-secondary');
   if (props.size === 'lg') base.push('btn-lg');
 
   if (props.class) base.push(props.class as any);

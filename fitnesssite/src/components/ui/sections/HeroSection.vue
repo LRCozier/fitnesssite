@@ -91,6 +91,10 @@ import BaseButton from '../BaseButton.vue';
 }
 
 .hero-cta {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
   margin-top: 2.5rem;
 }
 </style>

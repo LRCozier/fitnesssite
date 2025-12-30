@@ -66,10 +66,10 @@
 import { reactive, ref, computed } from 'vue';
 import emailjs from '@emailjs/browser';
 
-import BaseInput from '@/components/ui/form/BaseInput.vue';
-import BaseTextarea from '@/components/ui/form/BaseTextarea.vue';
-import BaseCheckboxGroup from '@/components/ui/form/BaseCheckboxGroup.vue';
-import BaseButton from '@/components/ui/BaseButton.vue';
+import BaseInput from './ui/form/BaseInput.vue';
+import BaseTextarea from './ui/form/BaseTextArea.vue';
+import BaseCheckboxGroup from './ui/form/BaseChecboxGroups.vue';
+import BaseButton from './ui/BaseButton.vue';
 
 import type { FormErrors, CheckboxOption } from '../types';
 import { getEmailJSConfig, isEmailJSConfigured } from '../lib/emailjs-config';
