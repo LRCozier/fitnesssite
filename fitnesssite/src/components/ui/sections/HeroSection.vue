@@ -18,18 +18,24 @@
       </p>
 
       <div class="hero-cta" aria-label="Primary actions">
-        <RouterLink to="/contact" class="btn btn-primary btn-lg">
-          Book a free consultation
-        </RouterLink>
-        <RouterLink to="/services" class="btn btn-lg">
-          View coaching options
-        </RouterLink>
+        <BaseButton 
+        label="Book a free Consultation"
+        to="/contact"
+        variant="primary"
+        size="lg"/>
+        <BaseButton 
+        label="View Services"
+        to="/services"
+        variant="secondary"
+        size="lg"/>
       </div>
     </div>
   </section>
 </template>
 
 <script setup lang="ts">
+import BaseButton from '../BaseButton.vue';
+
 // NOTE TO SELF, ADD BACKGROUND IMAGE
 </script>
 
