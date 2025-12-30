@@ -80,87 +80,129 @@ export const fallbackTestimonials: Testimonials[] = [
 export const fallbackServices: Service[] = [
   {
     id: '1',
-    title: '1-on-1 Personal Training',
+    title: '1-to-1 Personal Training',
     price: 'Enquire for Pricing',
     description:
-      'Personalised strength coaching, tailored to your goals and movement pattern.',
+      'Private strength coaching built around your goals, current ability, and confidence under the bar.',
     features: [
-      'Individualised programming',
-      'Technique correction & video feedback',
-      'Nutritional guidance',
-      'Flexible scheduling',
+      'Movement preparation and warm-up specific to your needs',
+      'Technique-led lifting with clear, simple cues',
+      'Progressive strength work tailored to your level',
+      'Review, reflection, and clear next steps each session',
     ],
-    ctaText: 'Book Sessions',
+    ctaText: 'Book Consultation',
     duration: '60 minutes',
-    intensity: 'High',
-    recommendedFor: ['Gym Newbies', 'Gym Returners', 'Personal progress'],
+    intensity: 'Varies by individual',
+    recommendedFor: [
+      'Beginners who want to learn lifting safely',
+      'Returners rebuilding strength and confidence',
+      'Anyone wanting clear structure and 1-to-1 attention',
+    ],
   },
   {
     id: '2',
-    title: 'Partner (2-on-1) Training',
+    title: '2-to-1 Group Personal Training',
     price: 'Enquire for Pricing',
     description:
-      'Train with a partner for shared motivation and cost-effective personal coaching.',
-    features: ['Shared programme', 'Individual review', 'Supportive environment'],
-    ctaText: 'Learn More',
+      'Shared coaching for two people who want to train together while still receiving individual guidance.',
+    features: [
+      'Shared session with programming tailored to each person',
+      'Technique coaching and feedback for both lifters',
+      'Pacing and loading adjusted to each individual',
+      'Supportive environment with built-in accountability',
+    ],
+    ctaText: 'Enquire About Availability',
     duration: '60 minutes',
-    intensity: 'Medium-High',
-    recommendedFor: ['Couples', 'Friends', 'Training partners'],
+    intensity: 'Medium–High (adjusted per person)',
+    recommendedFor: [
+      'Partners or friends who want to train together',
+      'People who feel more comfortable starting with someone they know',
+      'Anyone wanting a cost-effective way to access coaching',
+    ],
   },
   {
     id: '3',
-    title: 'Online Consultation & Programming',
+    title: 'Online Consultations & Tailored Programming',
     price: 'From £39.99 per hour',
     description:
-      'One Off Consultation by video call, and bespoke training programme.',
-    features: ['Individualised programming', 'Nutritional guidance and feedback'],
-    ctaText: 'Book Consultation',
+      'Guidance and structure for people training independently, with programmes built around your time, equipment, and ability.',
+    features: [
+      'Initial video consultation to understand goals and context',
+      'Training plan built around your schedule and equipment',
+      'Option for video form checks and progression updates',
+      'Ongoing guidance via agreed communication channels',
+    ],
+    ctaText: 'Apply for Tailored Programming',
     duration: 'Flexible',
-    intensity: 'Custom',
-    recommendedFor: ['Busy professionals', 'Remote consultation'],
+    intensity: 'Custom to your context',
+    recommendedFor: [
+      'Busy professionals training in commercial or home gyms',
+      'Lifters who want structure and accountability without in-person sessions',
+      'People comfortable training alone but wanting expert programming',
+    ],
   },
 ];
+
 
 //FALLBACK FAQ ITEMS
 export const FAQ_ITEMS: FAQItem[] = [
   {
-    id: 'getting-started',
-    question: 'I’m new to lifting. Is LAC Fitness suitable for beginners?',
+    id: 'services',
+    question: 'What services do you offer?',
     answer:
-      'Yes. I work with a lot of beginners. We start with movement quality, build confidence under the bar, and progress at a pace that respects your current ability and lifestyle.',
+      'I provide three core options: 1-to-1 Personal Training, 2-to-1 Small Group Training, and Online Consultations & Tailored Programming. All focus on strength, technique, and long-term progress.',
+    category: 'Services',
+  },
+  {
+    id: 'experience',
+    question: 'Do I need experience before starting?',
+    answer:
+      'No. You do not need to be fit, strong, or confident to start — that’s what we build together. My coaching is designed to support beginners and returners safely.',
     category: 'General',
   },
   {
     id: 'location',
-    question: 'Where do the in-person sessions take place?',
+    question: 'Where do the sessions take place?',
     answer:
-      'In-person sessions are based in Kingston Upon Thames in a fully-equipped strength training facility (My Fitpod Kingston). If you would prefer a home training session or outdoor training session, this can be provided at a mutally agreed location',
-    category: 'Logistics',
+      'All in-person sessions take place at My Fit Pod, Kingston — a private, appointment-only strength facility. It’s calm, controlled, and beginner-friendly.',
+    category: 'General',
   },
   {
-    id: 'online-programming',
-    question: 'How does the one off consultation and programming work?',
+    id: 'injury',
+    question: 'What if I have an injury or medical condition?',
     answer:
-      'My one off online consultation combines an indepth 45 minute video call and custom programme provided to you. You train at a time and location that suits you, with structure from me.',
-    category: 'Online Programming',
+      'You must disclose any injury or limitation before training. I will always adapt training to your needs, but I cannot diagnose or override medical advice. Medical clearance may be required before continuing.',
+    category: 'Professional Boundaries',
   },
   {
-    id: 'commitment',
-    question: 'Is there a minimum commitment?',
+    id: 'cancellations',
+    question: 'What is your cancellation policy?',
     answer:
-      'For most coaching options, I recommend a minimum of 10 weeks. Real strength, skill, and confidence are built over months, not weeks.',
+      '24 hours’ notice is required to cancel or reschedule a session. Late cancellations are charged in full due to limited availability.',
     category: 'Policies',
   },
   {
-    id: 'consultation',
-    question: 'Do you offer a free consultation?',
+    id: 'refunds',
+    question: 'Can I get a refund if I change my mind?',
     answer:
-      'Yes. Before any personal training sessions start, we’ll have a free consultation to discuss your goals, training history, and whether we’re a good fit to work together.',
-    category: 'General',
+      'One-off sessions are non-refundable. Refunds for multi-session blocks may be considered only if no sessions have been used and the request is made within 14 days of purchase.',
+    category: 'Policies',
+  },
+  {
+    id: 'nutrition',
+    question: 'Will I get a meal plan or medical advice?',
+    answer:
+      'I do not prescribe diets or provide medical treatment. However, I can support general lifestyle improvements and refer you to other professionals when appropriate.',
+    category: 'Professional Boundaries',
+  },
+  {
+    id: 'results',
+    question: 'How long will it take to see results?',
+    answer:
+      'Progress depends on consistency, lifestyle, and training history. I coach for long-term improvement — strength for life, not quick fixes.',
+    category: 'Expectations',
   },
 ];
-
-
 
 // BUSINESS INFO + CONTACT
 export const BUSINESS_INFO = {
