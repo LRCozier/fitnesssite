@@ -9,12 +9,13 @@
     <div class="hero-content">
       <h1 id="hero-heading">
         <span class="block">STRONGER FOR LIFE,</span>
-        <span class="block text-accent">NOT JUST FOR THE GYM.</span>
+        <span class="block text-accent">START WHERE YOU ARE.</span>
       </h1>
 
       <p>
-        1:1 strength and conditioning coaching in Richmond Upon Thames, focused on skill,
-        confidence, and results you can feel outside the gym.
+        Supportive 1:1 training for beginners, returners, and everyday 
+        adults who want to build strength without intimidation. Based in
+        Kingston Upon Thames.
       </p>
 
       <div class="hero-cta" aria-label="Primary actions">
