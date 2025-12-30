@@ -8,8 +8,8 @@
 
     <div class="hero-content">
       <h1 id="hero-heading">
-        <span class="block">STRONGER FOR LIFE,</span>
-        <span class="block text-accent">START WHERE YOU ARE.</span>
+        <span class="block">STRONGER FOR LIFE</span>
+        <span class="block text-accent">START WHERE YOU ARE</span>
       </h1>
 
       <p>
@@ -47,7 +47,7 @@ import BaseButton from '../BaseButton.vue';
   align-items: center;
   justify-content: center;
   text-align: center;
-  background-image: url('../../../assets/heroimage.jpg');
+  background-image: url('../../../assets/heroimage2.jpg');
   background-size: cover;
   background-position: center;
   color: white;
