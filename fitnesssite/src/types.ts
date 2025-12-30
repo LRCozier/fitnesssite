@@ -51,3 +51,17 @@ export interface EmailJSConfig {
   templateId: string;
   publicKey: string;
 }
+
+export type ButtonVariant = 'primary' | 'secondary';
+export type ButtonSize = 'md' | 'lg';
+
+export interface BaseButtonProps {
+  label?: string;
+  to?: string; // router
+  href?: string; // external URL
+  variant?: ButtonVariant;
+  size?: ButtonSize;
+  type?: 'button' | 'submit' | 'reset';
+  disabled?: boolean;
+  class?: string | string[] | Record<string, boolean>;
+}
