@@ -107,3 +107,11 @@ export interface BaseCheckboxGroupProps {
   hint?: string;
 }
 
+export interface FAQItem {
+  id: string;
+  question: string;
+  answer: string;
+  category?: string;
+}
+
+
