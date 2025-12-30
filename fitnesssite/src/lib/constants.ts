@@ -1,5 +1,5 @@
 // TYPES
-import type { Testimonials, Service } from '../types';
+import type { Testimonials, Service, FAQItem } from '../types';
 
 // SITE CONFIGURATION
 export const SITE_CONFIG = {
@@ -89,10 +89,10 @@ export const fallbackServices: Service[] = [
       'Nutritional guidance',
       'Flexible scheduling',
     ],
-    ctaText: 'Book Consultation',
+    ctaText: 'Book Sessions',
     duration: '60 minutes',
     intensity: 'High',
-    recommendedFor: ['Serious athletes', 'Technique focus', 'Personal progress'],
+    recommendedFor: ['Gym Newbies', 'Gym Returners', 'Personal progress'],
   },
   {
     id: '2',
@@ -108,17 +108,58 @@ export const fallbackServices: Service[] = [
   },
   {
     id: '3',
-    title: 'Online Coaching & Programming',
-    price: 'From £200/month',
+    title: 'Online Consultation & Programming',
+    price: 'From £39.99 per hour',
     description:
-      'Remote coaching, weekly check-ins, video feedback, and long-term progression.',
-    features: ['Custom app access', 'Video review', 'Messaging support'],
-    ctaText: 'Apply Now',
+      'One Off Consultation by video call, and bespoke training programme.',
+    features: ['Individualised programming', 'Nutritional guidance and feedback'],
+    ctaText: 'Book Consultation',
     duration: 'Flexible',
     intensity: 'Custom',
-    recommendedFor: ['Busy professionals', 'Remote training'],
+    recommendedFor: ['Busy professionals', 'Remote consultation'],
   },
 ];
+
+//FALLBACK FAQ ITEMS
+export const FAQ_ITEMS: FAQItem[] = [
+  {
+    id: 'getting-started',
+    question: 'I’m new to lifting. Is LAC Fitness suitable for beginners?',
+    answer:
+      'Yes. I work with a lot of beginners. We start with movement quality, build confidence under the bar, and progress at a pace that respects your current ability and lifestyle.',
+    category: 'General',
+  },
+  {
+    id: 'location',
+    question: 'Where do the in-person sessions take place?',
+    answer:
+      'In-person sessions are based in Kingston Upon Thames in a fully-equipped strength training facility (My Fitpod Kingston). If you would prefer a home training session or outdoor training session, this can be provided at a mutally agreed location',
+    category: 'Logistics',
+  },
+  {
+    id: 'online-programming',
+    question: 'How does the one off consultation and programming work?',
+    answer:
+      'My one off online consultation combines an indepth 45 minute video call and custom programme provided to you. You train at a time and location that suits you, with structure from me.',
+    category: 'Online Programming',
+  },
+  {
+    id: 'commitment',
+    question: 'Is there a minimum commitment?',
+    answer:
+      'For most coaching options, I recommend a minimum of 10 weeks. Real strength, skill, and confidence are built over months, not weeks.',
+    category: 'Policies',
+  },
+  {
+    id: 'consultation',
+    question: 'Do you offer a free consultation?',
+    answer:
+      'Yes. Before any personal training sessions start, we’ll have a free consultation to discuss your goals, training history, and whether we’re a good fit to work together.',
+    category: 'General',
+  },
+];
+
+
 
 // BUSINESS INFO + CONTACT
 export const BUSINESS_INFO = {
