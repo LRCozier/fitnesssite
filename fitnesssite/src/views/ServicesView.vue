@@ -153,18 +153,30 @@ const selectService = (id: string) => {
 onMounted(async () => {
   try {
     loading.value = true;
+
     const result = await getServices();
-    services.value = result;
-    if (result.length > 0) {
-      activeServiceId.value = result[0].id;
+
+    if (Array.isArray(result) && result.length > 0) {
+      services.value = result;
+      activeServiceId.value = result[0].id ?? null;
+    } else {
+      services.value = [];
+      activeServiceId.value = null;
     }
+
   } catch (err) {
     console.error(err);
-    error.value = 'Please refresh the page or contact me directly for details about current services.';
+    error.value =
+      'Please refresh the page or contact me directly for details about current services.';
+      
+    services.value = [];
+    activeServiceId.value = null;
+
   } finally {
     loading.value = false;
   }
 });
+
 
 useHead({
   title: 'Services',
