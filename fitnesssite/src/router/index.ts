@@ -43,7 +43,14 @@ const routes: RouteRecordRaw[] = [
     name: 'terms',
     component: TermsView,
     meta: { title: 'Terms & Conditions' },
-  }
+  },
+  {
+  path: '/:pathMatch(.*)*',
+  name: 'not-found',
+  component: () => import('../views/NotFound.vue'),
+  meta: { title: '404 - Page Not Found' },
+}
+
 ];
 
 const router = createRouter({
