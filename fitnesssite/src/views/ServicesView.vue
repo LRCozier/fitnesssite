@@ -138,9 +138,9 @@ import type { Service } from '../types';
 import BaseButton from '../components/ui/BaseButton.vue';
 
 const services = ref<Service[]>([]);
+const activeServiceId = ref<string | null>(null);
 const loading = ref(true);
 const error = ref<string | null>(null);
-const activeServiceId = ref<string | null>(null);
 
 const activeService = computed(() =>
   services.value.find((service) => service.id === activeServiceId.value) || null
@@ -155,28 +155,25 @@ onMounted(async () => {
     loading.value = true;
 
     const result = await getServices();
+    services.value = result;
 
-    if (Array.isArray(result) && result.length > 0) {
-      services.value = result;
-      activeServiceId.value = result[0].id ?? null;
+    const firstService = result[0];
+
+    if (firstService) {
+      activeServiceId.value = firstService.id;
     } else {
-      services.value = [];
       activeServiceId.value = null;
     }
-
   } catch (err) {
     console.error(err);
     error.value =
       'Please refresh the page or contact me directly for details about current services.';
-      
     services.value = [];
     activeServiceId.value = null;
-
   } finally {
     loading.value = false;
   }
 });
-
 
 useHead({
   title: 'Services',
