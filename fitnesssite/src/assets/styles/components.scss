@@ -19,6 +19,8 @@
 .btn-primary:hover {
   background-color: var(--color-accent-hover);
   transform: scale(1.05);
+  background-color: #ffffff;
+  color: var(--color-accent);
 }
 
 .btn-secondary {
