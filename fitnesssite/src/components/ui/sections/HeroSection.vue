@@ -46,7 +46,7 @@ import BaseButton from '../BaseButton.vue';
   align-items: center;
   justify-content: center;
   text-align: center;
-  background-image: url('../../../assets/images/heroimage.jpg');
+  background-image: url('../../../assets/images/heroimage2.jpg');
   background-size: cover;
   background-position: center;
   color: white;
