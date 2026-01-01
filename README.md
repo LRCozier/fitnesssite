@@ -20,7 +20,7 @@ A fully responsive fitness website built with Vue 3, Vite, and TypeScript, desig
 
 Live Site: https://lacfitness.com
 
-Repository: (insert your GitHub URL)
+Repository: https://github.com/LRCozier/fitnesssite
 
 ✨ Key Features
 Feature	Summary
