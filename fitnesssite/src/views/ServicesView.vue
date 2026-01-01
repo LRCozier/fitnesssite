@@ -25,6 +25,7 @@
       </div>
 
       <div v-else class="service-tabs">
+        <!-- Tab list -->
         <div
           class="service-tab-list"
           role="tablist"
@@ -45,6 +46,7 @@
           </button>
         </div>
 
+        <!-- Service details -->
         <article
           v-if="activeService"
           :id="`service-panel-${activeService.id}`"
@@ -65,20 +67,36 @@
               {{ activeService.description }}
             </p>
 
-            <div v-if="activeService.duration || activeService.intensity" class="service-meta">
-              <span v-if="activeService.duration" class="service-meta-pill">
+            <div
+              v-if="activeService.duration || activeService.intensity"
+              class="service-meta"
+            >
+              <span
+                v-if="activeService.duration"
+                class="service-meta-pill"
+              >
                 Duration: {{ activeService.duration }}
               </span>
-              <span v-if="activeService.intensity" class="service-meta-pill">
+              <span
+                v-if="activeService.intensity"
+                class="service-meta-pill"
+              >
                 Intensity: {{ activeService.intensity }}
               </span>
             </div>
           </header>
 
-          <section v-if="activeService.features?.length" class="service-section">
+          <!-- Features -->
+          <section
+            v-if="normalizedFeatures.length"
+            class="service-section"
+          >
             <h3>What’s included</h3>
             <ul class="service-features">
-              <li v-for="(feature, index) in activeService.features" :key="index">
+              <li
+                v-for="(feature, index) in normalizedFeatures"
+                :key="index"
+              >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
@@ -97,11 +115,15 @@
             </ul>
           </section>
 
-          <section v-if="activeService.recommendedFor?.length" class="service-section">
+          <!-- Recommended for -->
+          <section
+            v-if="normalizedRecommendedFor.length"
+            class="service-section"
+          >
             <h3>Ideal for</h3>
             <div class="service-tags">
               <span
-                v-for="(tag, index) in activeService.recommendedFor"
+                v-for="(tag, index) in normalizedRecommendedFor"
                 :key="index"
                 class="service-tag"
               >
@@ -141,8 +163,35 @@ const activeServiceId = ref<string | null>(null);
 const loading = ref(true);
 const error = ref<string | null>(null);
 
-const activeService = computed(() =>
+const activeService = computed<Service | null>(() =>
   services.value.find((service) => service.id === activeServiceId.value) || null
+);
+
+const normalizeList = (value: unknown): string[] => {
+  if (!value) return [];
+
+  if (Array.isArray(value)) {
+    return value
+      .map((item) => String(item).trim())
+      .filter(Boolean);
+  }
+
+  if (typeof value === 'string') {
+    return value
+      .split(/[\n,•]/)
+      .map((item) => item.trim())
+      .filter(Boolean);
+  }
+
+  return [];
+};
+
+const normalizedFeatures = computed<string[]>(() =>
+  normalizeList(activeService.value?.features as unknown)
+);
+
+const normalizedRecommendedFor = computed<string[]>(() =>
+  normalizeList(activeService.value?.recommendedFor as unknown)
 );
 
 const selectService = (id: string) => {
@@ -157,12 +206,7 @@ onMounted(async () => {
     services.value = result;
 
     const firstService = result[0];
-
-    if (firstService) {
-      activeServiceId.value = firstService.id;
-    } else {
-      activeServiceId.value = null;
-    }
+    activeServiceId.value = firstService ? firstService.id : null;
   } catch (err) {
     console.error(err);
     error.value =
