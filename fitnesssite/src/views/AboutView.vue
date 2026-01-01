@@ -88,3 +88,7 @@
     </div>
   </section>
 </template>
+
+<script lang="ts">
+  
+</script>
