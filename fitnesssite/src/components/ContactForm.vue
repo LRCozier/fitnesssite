@@ -40,7 +40,7 @@
       id="message"
       label="Tell me about your goals"
       name="message"
-      rows?=6
+      :rows=6
       required
       :error="errors.message"
       hint="Share as much detail as you like about your training background and goals."

@@ -86,7 +86,7 @@ export interface BaseTextareaProps {
   name?: string;
   placeholder?: string;
   required?: boolean;
-  rows?: number;
+  rows: number;
   error?: string;
   hint?: string;
 }
