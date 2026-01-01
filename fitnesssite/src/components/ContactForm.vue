@@ -1,131 +1,168 @@
 <template>
-  <form class="contact-form" @submit.prevent="onSubmit">
+  <form class="contact-form" @submit.prevent="handleSubmit" novalidate>
     <!-- Name -->
     <BaseInput
-      v-model="form.name"
       id="name"
       label="Name"
       name="name"
+      type="text"
       autocomplete="name"
-      required
+      v-model="form.name"
       :error="errors.name"
+      placeholder="Your name"
+      required
     />
 
     <!-- Email -->
     <BaseInput
-      v-model="form.email"
       id="email"
       label="Email"
       name="email"
       type="email"
       autocomplete="email"
-      required
+      v-model="form.email"
       :error="errors.email"
+      placeholder="you@example.com"
+      required
     />
 
-    <!-- Services (checkbox group) -->
-    <BaseCheckboxGroup
-      v-model="form.services"
+    <!-- Phone -->
+    <BaseInput
+      id="phone"
+      label="Phone number"
+      name="phone"
+      type="tel"
+      autocomplete="tel"
+      v-model="form.phone"
+      :error="errors.phone"
+      placeholder="e.g. +44 7700 900123"
+      required
+    />
+
+    <!-- Services -->
+    <BaseCheckboxGroups
       name="services"
       legend="What are you interested in?"
+      v-model="form.services"
       :options="serviceOptions"
-      required
       :error="errors.services"
-      hint="Select at least one service so I can better understand your goals."
+      hint="You can select more than one option."
+      :required="true"
     />
 
     <!-- Message -->
-    <BaseTextarea
-      v-model="form.message"
+    <BaseTextArea
       id="message"
       label="Tell me about your goals"
       name="message"
-      :rows=6
-      required
+      v-model="form.message"
+      :rows="6"
       :error="errors.message"
-      hint="Share as much detail as you like about your training background and goals."
+      hint="Include relevant history, injuries, or what you'd like to achieve."
+      required
     />
 
-    <!-- Status text -->
-    <p v-if="statusMessage" :class="statusClass">
-      {{ statusMessage }}
-    </p>
+    <!-- reCAPTCHA -->
+    <div class="form-group">
+      <div id="recaptcha-container" class="recaptcha-container"></div>
+      <span v-if="errors.captcha" class="form-error" role="alert">
+        {{ errors.captcha }}
+      </span>
+    </div>
 
     <!-- Submit -->
-    <BaseButton
-      :label="isSubmitting ? 'Sending...' : 'Submit'"
-      type="submit"
-      variant="primary"
-      size="lg"
-      :disabled="isSubmitting || !isEmailJSReady"
-    />
+    <div class="form-group">
+      <BaseButton
+        type="submit"
+        variant="primary"
+        size="lg"
+        :disabled="isSubmitting || !emailJsReady"
+      >
+        <span v-if="isSubmitting">Sending…</span>
+        <span v-else>Send Message</span>
+      </BaseButton>
+    </div>
+
+    <!-- Status -->
+    <p
+      v-if="statusMessage"
+      :class="{
+        'form-status-success': statusType === 'success',
+        'form-status-error': statusType === 'error'
+      }"
+    >
+      {{ statusMessage }}
+    </p>
   </form>
 </template>
 
 <script setup lang="ts">
-import { reactive, ref, computed } from 'vue';
+import { reactive, ref, computed, onMounted } from 'vue';
 import emailjs from '@emailjs/browser';
 
 import BaseInput from './ui/form/BaseInput.vue';
-import BaseTextarea from './ui/form/BaseTextArea.vue';
-import BaseCheckboxGroup from './ui/form/BaseChecboxGroups.vue';
+import BaseTextArea from './ui/form/BaseTextArea.vue';
 import BaseButton from './ui/BaseButton.vue';
+import BaseCheckboxGroups from './ui/form/BaseCheckboxGroups.vue';
 
-import type { FormErrors, CheckboxOption } from '../types';
 import { getEmailJSConfig, isEmailJSConfigured } from '../lib/emailjs-config';
+import type { FormErrors } from '../types';
+
+type CheckboxOption = {
+  value: string;
+  label: string;
+  description?: string;
+};
+
+const serviceOptions: CheckboxOption[] = [
+  {
+    value: '1-to-1 Personal Training',
+    label: '1-to-1 Personal Training',
+    description:
+      'Private strength coaching built around your goals, confidence, and movement.',
+  },
+  {
+    value: '2-to-1 Training',
+    label: '2-to-1 Small Group Training',
+    description:
+      'Train with a partner or friend for shared motivation and a supportive environment.',
+  },
+  {
+    value: 'Online Consultations & Programming',
+    label: 'Online Consultations & Programming',
+    description:
+      'Remote guidance, tailored programming, and accountability for independent training.',
+  },
+];
 
 const form = reactive({
   name: '',
   email: '',
-  message: '',
+  phone: '',
   services: [] as string[],
-});
-
-const errors = reactive<FormErrors>({
-  name: '',
-  email: '',
   message: '',
-  services: '',
 });
 
+const errors = reactive<FormErrors>({});
 const isSubmitting = ref(false);
 const statusMessage = ref('');
 const statusType = ref<'success' | 'error' | ''>('');
 
-const serviceOptions: CheckboxOption[] = [
-  {
-    value: '1on1',
-    label: '1-on-1 Personal Training',
-    description: 'Focused, personalised coaching in person.',
-  },
-  {
-    value: 'partner',
-    label: 'Partner (2-on-1) Training',
-    description: 'Train with a partner or friend for shared motivation.',
-  },
-  {
-    value: 'online',
-    label: 'Online Consultation & Programming',
-    description: 'Initial video consultation and bespoke training programme composed.',
-  },
-];
-
 const emailConfig = getEmailJSConfig();
-const isEmailJSReady = computed(() => isEmailJSConfigured());
+const emailJsReady = computed(() => isEmailJSConfigured());
 
-const statusClass = computed(() => {
-  if (statusType.value === 'success') return 'form-status-success';
-  if (statusType.value === 'error') return 'form-status-error';
-  return '';
-});
+const recaptchaSiteKey = import.meta.env.VITE_RECAPTCHA_SITE_KEY as string | undefined;
 
-const validate = (): boolean => {
+const phoneRegex = /^[0-9+().\-\s]{7,20}$/;
+
+const validateForm = (): boolean => {
+  let valid = true;
+
   errors.name = '';
   errors.email = '';
-  errors.message = '';
+  errors.phone = '';
   errors.services = '';
-
-  let valid = true;
+  errors.message = '';
 
   if (!form.name.trim()) {
     errors.name = 'Please enter your name.';
@@ -140,13 +177,21 @@ const validate = (): boolean => {
     valid = false;
   }
 
+  if (!form.phone.trim()) {
+    errors.phone = 'Please provide a phone number so I can contact you.';
+    valid = false;
+  } else if (!phoneRegex.test(form.phone.trim())) {
+    errors.phone = 'Please enter a valid phone number.';
+    valid = false;
+  }
+
   if (!form.services.length) {
-    errors.services = 'Please select at least one service.';
+    errors.services = 'Please select at least one service you’re interested in.';
     valid = false;
   }
 
   if (!form.message.trim()) {
-    errors.message = 'Please tell me a bit about your goals.';
+    errors.message = 'Please add a brief message about your goals or situation.';
     valid = false;
   }
 
@@ -156,51 +201,135 @@ const validate = (): boolean => {
 const resetForm = () => {
   form.name = '';
   form.email = '';
-  form.message = '';
+  form.phone = '';
   form.services = [];
+  form.message = '';
+
+  errors.name = '';
+  errors.email = '';
+  errors.phone = '';
+  errors.services = '';
+  errors.message = '';
+  errors.captcha = '';
+
+  const w = window as any;
+  if (w.grecaptcha && typeof w.grecaptcha.reset === 'function') {
+    w.grecaptcha.reset();
+  }
 };
 
-const onSubmit = async () => {
-  statusMessage.value = '';
-  statusType.value = '';
 
-  if (!isEmailJSReady.value) {
-    statusMessage.value = 'Email service is not configured. Please try again later.';
-    statusType.value = 'error';
+const handleSubmit = async () => {
+  const w = window as any;
+
+  const token =
+    w.grecaptcha && typeof w.grecaptcha.getResponse === 'function'
+      ? w.grecaptcha.getResponse()
+      : '';
+
+  errors.captcha = '';
+
+  if (!token) {
+    errors.captcha = 'Please confirm you are not a robot.';
     return;
   }
 
-  if (!validate()) {
-    statusMessage.value = 'Please fix the highlighted fields.';
-    statusType.value = 'error';
+  if (!validateForm()) {
     return;
   }
 
-  isSubmitting.value = true;
+  if (!emailJsReady.value) {
+    statusMessage.value = 'Contact form temporarily unavailable. Please email me directly.';
+    statusType.value = 'error';
+    return;
+  }
 
   try {
+    isSubmitting.value = true;
+    statusMessage.value = '';
+    statusType.value = '';
+
+    const params = {
+      name: form.name,
+      email: form.email,
+      phone: form.phone,
+      services: form.services.join(', '),
+      message: form.message,
+      reply_to: form.email,
+      'g-recaptcha-response': token,
+    };
+
+    console.log('[ContactForm] Sending EmailJS params:', params);
+
     await emailjs.send(
       emailConfig.serviceId,
       emailConfig.templateId,
-      {
-        from_name: form.name,
-        from_email: form.email,
-        reply_to: form.email,
-        message: form.message,
-        services: form.services.join(', '),
-      },
+      params,
       emailConfig.publicKey
     );
 
-    statusMessage.value = 'Thanks for getting in touch. I will get back to you soon.';
+    statusMessage.value =
+      'Thanks for your message — I’ll get back to you as soon as possible.';
     statusType.value = 'success';
+
     resetForm();
   } catch (error) {
-    console.error('EmailJS error:', error);
-    statusMessage.value = 'Something went wrong sending your message. Please try again.';
+    console.error('[ContactForm] Failed to send message', error);
+    statusMessage.value =
+      'Something went wrong while sending your message. Please try again or email me directly.';
     statusType.value = 'error';
   } finally {
     isSubmitting.value = false;
   }
 };
+
+//reCAPTCHA widget
+const initRecaptchaWidget = () => {
+  if (!recaptchaSiteKey) {
+    console.warn('[reCAPTCHA] Missing VITE_RECAPTCHA_SITE_KEY – widget will not be rendered.');
+    return;
+  }
+
+  const w = window as any;
+  if (!w.grecaptcha || typeof w.grecaptcha.render !== 'function') {
+    return;
+  }
+
+  const container = document.getElementById('recaptcha-container');
+  if (!container) return;
+
+  w.grecaptcha.render(container, {
+    sitekey: recaptchaSiteKey,
+    callback: (token: string) => {
+      console.log('[reCAPTCHA] Token received (callback):', token);
+      errors.captcha = '';
+    },
+    'expired-callback': () => {
+      console.log('[reCAPTCHA] Token expired');
+      errors.captcha = 'CAPTCHA expired, please tick the box again.';
+    },
+  });
+};
+
+onMounted(() => {
+  const w = window as any;
+
+  if (w.grecaptcha && typeof w.grecaptcha.render === 'function') {
+    initRecaptchaWidget();
+  } else {
+    const script = document.querySelector<HTMLScriptElement>(
+      'script[src*="https://www.google.com/recaptcha/api.js"]'
+    );
+
+    if (script) {
+      script.addEventListener(
+        'load',
+        () => {
+          initRecaptchaWidget();
+        },
+        { once: true }
+      );
+    }
+  }
+});
 </script>

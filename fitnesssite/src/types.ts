@@ -42,8 +42,10 @@ export interface TestimonialCardProps{
 export interface FormErrors {
   name?: string;
   email?: string;
+  phone?: string;
   message?: string;
   services?: string;
+  captcha?: string;
 }
 
 export interface EmailJSConfig {
