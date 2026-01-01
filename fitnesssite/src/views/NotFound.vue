@@ -22,12 +22,6 @@
 </template>
 
 <script setup lang="ts">
-import { useHead } from "@vueuse/head";
-
-useHead({
-  title: "404 - Page Not Found",
-  meta: [{ name: "robots", content: "noindex, nofollow" }]
-});
 </script>
 
 <style scoped>

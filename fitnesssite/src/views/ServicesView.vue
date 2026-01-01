@@ -132,7 +132,6 @@
 
 <script setup lang="ts">
 import { ref, computed, onMounted } from 'vue';
-import { useHead } from '@vueuse/head';
 import { getServices } from '../utils/graphql-utils';
 import type { Service } from '../types';
 import BaseButton from '../components/ui/BaseButton.vue';
@@ -173,16 +172,5 @@ onMounted(async () => {
   } finally {
     loading.value = false;
   }
-});
-
-useHead({
-  title: 'Services',
-  meta: [
-    {
-      name: 'description',
-      content:
-        '1-to-1 personal training, 2-to-1 small group sessions, and online consultations & programming with LAC Fitness in Kingston/Richmond.',
-    },
-  ],
 });
 </script>

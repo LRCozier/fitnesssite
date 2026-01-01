@@ -56,7 +56,6 @@
 
 <script setup lang="ts">
 import { ref, computed, onMounted } from 'vue';
-import { useHead } from '@vueuse/head';
 import { getAllTestimonials } from '../utils/graphql-utils';
 import TestimonialCard from '../components/ui/cards/TestimonialCard.vue';
 import type { Testimonials } from '../types';
@@ -78,16 +77,5 @@ onMounted(async () => {
   const all = await getAllTestimonials();
   testimonials.value = all;
   categories.value = [...new Set(all.map((t) => t.category))];
-});
-
-useHead({
-  title: 'Client Testimonials',
-  meta: [
-    {
-      name: 'description',
-      content:
-        "Read real client testimonials from LAC Fitness members who've transformed their strength, performance, and confidence.",
-    },
-  ],
 });
 </script>
