@@ -82,7 +82,7 @@ export const fallbackServices: Service[] = [
     title: '1-to-1 Personal Training',
     price: 'From £40 per session',
     description:
-      'Private strength coaching built around your goals, current ability, and confidence under the bar.',
+      'Private coaching built around your goals, current ability, and confidence under the bar.',
     features: [
       'Movement preparation and warm-up specific to your needs',
       'Technique-led lifting with clear, simple cues',
@@ -133,7 +133,7 @@ export const fallbackServices: Service[] = [
     ],
     ctaText: 'Apply for Tailored Programming',
     duration: 'Flexible',
-    intensity: 'Custom to your context',
+    intensity: 'Custom to you',
     recommendedFor: [
       'Busy professionals training in commercial or home gyms',
       'Lifters who want structure and accountability without in-person sessions',
