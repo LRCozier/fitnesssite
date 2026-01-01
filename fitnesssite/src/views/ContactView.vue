@@ -33,21 +33,9 @@
 
 <script setup lang="ts">
 import { computed } from 'vue';
-import { useHead } from '@vueuse/head';
 import ContactForm from '../components/ContactForm.vue';
 import FaqAcordion from '../components/ui/FaqAcordion.vue';
 import { FAQ_ITEMS } from '../lib/constants';
-
-useHead({
-  title: 'Get In Touch',
-  meta: [
-    {
-      name: 'description',
-      content:
-        'Contact LAC Fitness to discuss 1-to-1 personal training, 2-to-1 small group sessions, or online consultations & programming in Kingston/Richmond.',
-    },
-  ],
-});
 
 const faqSnippet = computed(() =>
   FAQ_ITEMS.filter((item) =>

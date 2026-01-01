@@ -88,18 +88,3 @@
     </div>
   </section>
 </template>
-
-<script setup lang="ts">
-import { useHead } from '@vueuse/head';
-
-useHead({
-  title: 'About Luke Cozier',
-  meta: [
-    {
-      name: 'description',
-      content:
-        'Learn about personal trainer Luke Cozier, his mission to redefine fitness, and his evidence-based strength and conditioning approach.',
-    },
-  ],
-});
-</script>
