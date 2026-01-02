@@ -77,7 +77,7 @@
           <h2>8. Contact</h2>
           <p>
             If you have any questions about these Terms &amp; Conditions, please contact:
-            <a href="mailto:lrcozier@gmail.com" class="footer-link">lrcozier@gmail.com</a>.
+            <a href="mailto:lacfitnessuk@gmail.com" class="footer-link">lacfitnessuk@gmail.com</a>.
           </p>
         </section>
       </article>

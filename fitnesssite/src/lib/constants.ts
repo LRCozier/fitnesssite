@@ -230,7 +230,7 @@ export const BUSINESS_INFO = {
 } as const;
 
 export const CONTACT_INFO = {
-  email: 'lrcozier@gmail.com',
+  email: 'lacfitnessuk@gmail.com',
   consultationHours: [
     'Mon–Fri: 5 PM - 8 PM',
     'Saturday: 9 AM - 2 PM',
