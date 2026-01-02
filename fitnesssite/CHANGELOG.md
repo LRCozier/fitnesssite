@@ -1,6 +1,11 @@
 # 📌 CHANGELOG
 All notable changes to this project will be documented here.
 
+## [1.0.1] – 2026-01-02
+
+### Fixed
+- Fixed layout and styling issues affecting page presentation after deployment.
+
 ---
 
 ## [1.0.0] – Initial Production Launch (2026-01-01)
