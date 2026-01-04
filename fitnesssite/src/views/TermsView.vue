@@ -189,7 +189,7 @@
               solely for coaching and safety and will not be shared without consent.
             </li>
             <li>
-              <strong>CCTV:</strong> Sessions at <a href="https://myfitpod.co.uk/pages/my-fit-pod-kingston-upon-thames" target="_blank">My Fit Pod, Kingston</a>, are subject to 24/7 CCTV for safety
+              <strong>CCTV:</strong> Sessions at <a href="https://myfitpod.co.uk/pages/my-fit-pod-kingston-upon-thames" target="_blank" class="terms-link">My Fit Pod, Kingston</a>, are subject to 24/7 CCTV for safety
               and crime prevention. By attending, you consent to being recorded.
             </li>
           </ul>
