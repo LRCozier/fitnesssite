@@ -12,3 +12,17 @@
   --color-warning: #facc15;
   --color-error: #ef4444;
 }
+
+[data-theme="light"] {
+  --color-bg-primary: #f9fafb;
+  --color-bg-secondary: #ffffff;
+  --color-bg-tertiary: #f3f4f6;
+  --color-border: #d1d5db;
+
+  --color-text-primary: #111827;
+  --color-text-secondary: #4b5563;
+  --color-text-muted: #6b7280;
+
+  --color-accent: #dc2626;
+  --color-accent-hover: #b91c1c;
+}

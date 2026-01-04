@@ -14,7 +14,7 @@
 
 .section-subtitle {
   color: var(--color-accent);
-  font-weight: 600;
+  font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.05em;
 }
@@ -24,7 +24,7 @@
   font-size: 2.25rem;
   font-weight: 800;
   letter-spacing: -0.025em;
-  color: #fff;
+  color: var(--color-text-secondary);
 }
 
 .section-text {
@@ -52,7 +52,7 @@
 }
 
 .navbar {
-  background-color: rgba(24, 24, 27, 0.8);
+  background: var(--color-bg-primary);
   backdrop-filter: blur(10px);
   position: sticky;
   top: 0;
@@ -71,7 +71,7 @@
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  color: #fff;
+  color: var(--color-text-primary);
   text-decoration: none;
   transition: color 0.3s ease;
 }

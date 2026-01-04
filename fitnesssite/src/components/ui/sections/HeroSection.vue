@@ -3,6 +3,7 @@
     class="hero-section"
     role="banner"
     aria-labelledby="hero-heading"
+    :style="heroStyle"
   >
     <div class="hero-overlay" aria-hidden="true"></div>
 
@@ -36,6 +37,18 @@
 
 <script setup lang="ts">
 import BaseButton from '../BaseButton.vue';
+import { computed } from 'vue';
+import { useTheme } from '../../../composables/useTheme';
+import heroLight from '../../../assets/images/heroimage-lighttheme1.jpg';
+import heroDark from '../../../assets/images/heroimage-darktheme.jpg';
+
+const {isLight} = useTheme();
+
+const heroStyle = computed(() => {
+  return {
+    backgroundImage: `url(${isLight.value ? heroLight : heroDark})`,
+  } as const;
+});
 </script>
 
 <style>
@@ -46,10 +59,10 @@ import BaseButton from '../BaseButton.vue';
   align-items: center;
   justify-content: center;
   text-align: center;
-  background-image: url('../../../assets/images/heroimage2.jpg');
   background-size: cover;
   background-position: center;
   color: white;
+  transition: background-image 250ms ease-in-out;
 }
 
 .hero-overlay {
@@ -96,4 +109,7 @@ import BaseButton from '../BaseButton.vue';
   flex-wrap: wrap;
   margin-top: 2.5rem;
 }
+
+
+
 </style>

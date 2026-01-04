@@ -1,7 +1,7 @@
 <template>
   <section class="section">
     <div class="container">
-      <p class="section-subtitle">Why Train With LAC Fitness</p>
+      <p class="section-subtitle">Why Train With L.A.C. Fitness</p>
       <h2 class="section-title">Strength That Transfers to Real Life</h2>
       <p class="section-text">
         Not just hard workouts—training that builds confidence, capability, and strength you feel every day.

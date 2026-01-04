@@ -14,8 +14,10 @@
         aria-label="Luke Cozier - Home"
       >
         <DumbbellIcon class="navbar-logo-icon" aria-hidden="true" />
-        <span class="navbar-logo-text">LAC FITNESS</span>
+        <span class="navbar-logo-text">L.A.C. FITNESS</span>
       </RouterLink>
+
+      <ThemeSwitcher/>
 
       <!-- Desktop nav -->
       <div class="nav-links-desktop">
@@ -80,6 +82,7 @@ import { ref } from 'vue';
 import { useRoute } from 'vue-router';
 import { DumbbellIcon, MenuIcon, XIcon } from '../ui/icons';
 import { NAV_LINKS } from '../../lib/constants';
+import ThemeSwitcher from '../ui/ThemeSwitcher.vue';
 
 const isOpen = ref(false);
 const route = useRoute();
