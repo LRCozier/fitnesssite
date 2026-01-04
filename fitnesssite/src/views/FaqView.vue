@@ -1,35 +1,63 @@
 <template>
   <section class="section section-dark">
-    <div class="container">
-      <div class="text-center">
+    <div class="container container-sm">
+      <header class="text-center">
         <h1 class="page-title">FREQUENTLY ASKED QUESTIONS</h1>
         <p class="section-text">
-          A quick overview of how coaching works, what to expect, and whether LAC Fitness is right for you.
+          Straight answers, no fluff. If you still have questions, head to the
+          <RouterLink class="faq-link" to="/contact">contact page</RouterLink>.
         </p>
-      </div>
+      </header>
 
-      <FaqAccordion :items="faqItems" :singleOpen="true" />
+      <section class="faq-group" aria-labelledby="faq-basics">
+        <h2 id="faq-basics" class="faq-group-title">🏋️ The Basics</h2>
+        <FaqAcordion :items="basics" :singleOpen="true" />
+      </section>
 
-      <div class="section-center" style="margin-top: 3rem;">
-        <p class="section-text">
-          Still not sure, or have a question that is not listed here?
-        </p>
-        <BaseButton
-          variant="primary"
-          size="lg"
-          to="/contact"
-        >
-          Ask a Question
-        </BaseButton>
-      </div>
+      <section class="faq-group" aria-labelledby="faq-fine-print">
+        <h2 id="faq-fine-print" class="faq-group-title">⚖️ The “Fine Print” Made Easy</h2>
+        <FaqAcordion :items="finePrint" :singleOpen="true" />
+      </section>
+
+      <section class="faq-group" aria-labelledby="faq-personal-touch">
+        <h2 id="faq-personal-touch" class="faq-group-title">🤝 The Personal Touch</h2>
+        <FaqAcordion :items="personalTouch" :singleOpen="true" />
+      </section>
     </div>
   </section>
 </template>
 
 <script setup lang="ts">
-import FaqAccordion from '../components/ui/FaqAcordion.vue';
-import BaseButton from '../components/ui/BaseButton.vue';
-import { FAQ_ITEMS } from '../lib/constants';
+import { computed } from 'vue';
+import { FAQ_ITEMS } from '../lib/faqs';
+import FaqAcordion from '../components/ui/FaqAcordion.vue';
 
-const faqItems = FAQ_ITEMS;
+const basics = computed(() => FAQ_ITEMS.filter((i) => i.category === 'The Basics'));
+const finePrint = computed(() => FAQ_ITEMS.filter((i) => i.category === 'Fine Print'));
+const personalTouch = computed(() => FAQ_ITEMS.filter((i) => i.category === 'Personal Touch'));
 </script>
+
+<style scoped>
+.faq-group {
+  margin-top: 3rem;
+  padding: 1.5rem;
+  border: 1px solid var(--color-border);
+  border-radius: 0.5rem;
+  background: var(--color-bg-secondary);
+}
+
+.faq-group-title {
+  font-size: 1.5rem;
+  font-weight: 800;
+  margin-bottom: 1rem;
+}
+
+.faq-link {
+  color: var(--color-text-primary);
+  text-decoration: underline;
+}
+
+.faq-link:hover {
+  color: var(--color-accent);
+}
+</style>

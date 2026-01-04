@@ -35,7 +35,7 @@
 import { computed } from 'vue';
 import ContactForm from '../components/ContactForm.vue';
 import FaqAcordion from '../components/ui/FaqAcordion.vue';
-import { FAQ_ITEMS } from '../lib/constants';
+import { FAQ_ITEMS } from '../lib/faqs';
 
 const faqSnippet = computed(() =>
   FAQ_ITEMS.filter((item) =>

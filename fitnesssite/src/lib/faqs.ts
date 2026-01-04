@@ -1,5 +1,4 @@
 import type { FAQItem } from '../types';
-import { EXTERNAL_LINKS } from './constants';
 
 export const FAQ_ITEMS: FAQItem[] = [
   {
@@ -21,7 +20,7 @@ export const FAQ_ITEMS: FAQItem[] = [
     category: 'The Basics',
     question: 'Where do the sessions take place?',
     answer:
-      `Most 1-to-1 and 2-to-1 sessions take place at My Fit Pod, Kingston (${EXTERNAL_LINKS.myFitPod}). It’s a private space that allows us to focus on your training without the distractions of a crowded commercial gym.`,
+      `Most 1-to-1 and 2-to-1 sessions take place at My Fit Pod, Kingston. It’s a private space that allows us to focus on your training without the distractions of a crowded commercial gym.`,
   },
   {
     id: 'results',
@@ -67,13 +66,12 @@ export const FAQ_ITEMS: FAQItem[] = [
       'I provide nutritional guidance and habit-based coaching to support training. I do not prescribe medical meal plans, diagnose injuries, or provide medical advice. For clinical issues, I will refer you to a qualified Dietician or Physiotherapist.',
   },
 
-  // 🤝 Personal Touch
   {
     id: 'nervous',
     category: 'Personal Touch',
     question: 'I’m quite nervous about gym environments—how do you handle that?',
     answer:
-      `Gym intimidation is real. That’s why I train at a private facility like My Fit Pod (${EXTERNAL_LINKS.myFitPod}). It’s just us and the iron—no audiences, no ego. I’m here to ensure you feel secure, capable, and respected every time you step through the door.`,
+      `Gym intimidation is real. That’s why I train at a private facility like My Fit Pod, Kingston. It’s just us and the iron—no audiences, no ego. I’m here to ensure you feel secure, capable, and respected every time you step through the door.`,
   },
   {
     id: 'not-feeling-it',

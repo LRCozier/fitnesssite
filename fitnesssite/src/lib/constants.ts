@@ -1,5 +1,5 @@
 // TYPES
-import type { Testimonials, Service, FAQItem } from '../types';
+import type { Testimonials, Service,} from '../types';
 
 // SITE CONFIGURATION
 export const SITE_CONFIG = {
@@ -16,10 +16,6 @@ export const SITE_CONFIG = {
     tiktok: 'https://www.tiktok.com/@lacozierfitness',
     linkedin: 'https://www.linkedin.com/in/luke-rudderham-cozier-30205343/',
   },
-} as const;
-
-export const EXTERNAL_LINKS = {
-  myFitPod: 'https://myfitpod.co.uk/pages/my-fit-pod-kingston-upon-thames',
 } as const;
 
 
