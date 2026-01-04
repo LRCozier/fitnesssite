@@ -36,28 +36,3 @@ const basics = computed(() => FAQ_ITEMS.filter((i) => i.category === 'The Basics
 const finePrint = computed(() => FAQ_ITEMS.filter((i) => i.category === 'Fine Print'));
 const personalTouch = computed(() => FAQ_ITEMS.filter((i) => i.category === 'Personal Touch'));
 </script>
-
-<style scoped>
-.faq-group {
-  margin-top: 3rem;
-  padding: 1.5rem;
-  border: 1px solid var(--color-border);
-  border-radius: 0.5rem;
-  background: var(--color-bg-secondary);
-}
-
-.faq-group-title {
-  font-size: 1.5rem;
-  font-weight: 800;
-  margin-bottom: 1rem;
-}
-
-.faq-link {
-  color: var(--color-text-primary);
-  text-decoration: underline;
-}
-
-.faq-link:hover {
-  color: var(--color-accent);
-}
-</style>

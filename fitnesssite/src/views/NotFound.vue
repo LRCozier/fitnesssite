@@ -24,24 +24,3 @@
 <script setup lang="ts">
 </script>
 
-<style scoped>
-.not-found-wrapper {
-  min-height: 80vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.fun-copy {
-  font-style: italic;
-  margin-top: 1rem;
-}
-
-.not-found-actions {
-  margin-top: 2rem;
-  display: flex;
-  gap: 1rem;
-  justify-content: center;
-  flex-wrap: wrap;
-}
-</style>

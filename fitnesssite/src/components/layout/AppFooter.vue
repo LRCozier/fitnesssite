@@ -14,7 +14,7 @@
       </p>
 
       <p class="footer-location">
-        Personal Training in Richmond Upon Thames / Kingston Upon Thames.
+        Personal Training in Kingston Upon Thames.
       </p>
     </div>
   </footer>

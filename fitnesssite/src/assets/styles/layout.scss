@@ -209,10 +209,13 @@
   margin-left: auto;
   margin-right: auto;
   font-size: 1.125rem;
-  color: var(--color-text-secondary);
 }
 
 .hero-cta {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
   margin-top: 2.5rem;
 }
 
