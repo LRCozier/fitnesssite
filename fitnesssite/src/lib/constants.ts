@@ -18,6 +18,11 @@ export const SITE_CONFIG = {
   },
 } as const;
 
+export const EXTERNAL_LINKS = {
+  myFitPod: 'https://myfitpod.co.uk/pages/my-fit-pod-kingston-upon-thames',
+} as const;
+
+
 // NAVIGATION LINKS
 export const NAV_LINKS = [
   { href: '/', label: 'Home' },
@@ -139,67 +144,6 @@ export const fallbackServices: Service[] = [
       'Lifters who want structure and accountability without in-person sessions',
       'People comfortable training alone but wanting expert programming',
     ],
-  },
-];
-
-
-//FALLBACK FAQ ITEMS
-export const FAQ_ITEMS: FAQItem[] = [
-  {
-    id: 'services',
-    question: 'What services do you offer?',
-    answer:
-      'I provide three core options: 1-to-1 Personal Training, 2-to-1 Small Group Training, and Online Consultations & Tailored Programming. All focus on strength, technique, and long-term progress.',
-    category: 'Services',
-  },
-  {
-    id: 'experience',
-    question: 'Do I need experience before starting?',
-    answer:
-      'No. You do not need to be fit, strong, or confident to start — that’s what we build together. My coaching is designed to support beginners and returners safely.',
-    category: 'General',
-  },
-  {
-    id: 'location',
-    question: 'Where do the sessions take place?',
-    answer:
-      'All in-person sessions take place at My Fit Pod, Kingston — a private, appointment-only strength facility. It’s calm, controlled, and beginner-friendly, without the noise or intimidation of a busy commercial gym. If you would prefer to train elsewhere, I can also provide alternative locations. This includes: Home training sessions (space and equipment permitting), Outdoor sessions in a mutually agreed location (parks, open spaces, private gardens), Other approved training spaces if access is arranged by the client. These options are available to make training more accessible, comfortable, and sustainable for you. Location preferences can be discussed during the consultation to ensure we find the best environment for your confidence, goals, and practical needs.',
-    category: 'General',
-  },
-  {
-    id: 'injury',
-    question: 'What if I have an injury or medical condition?',
-    answer:
-      'You must disclose any injury or limitation before training. I will always adapt training to your needs, but I cannot diagnose or override medical advice. Medical clearance may be required before continuing.',
-    category: 'Professional Boundaries',
-  },
-  {
-    id: 'cancellations',
-    question: 'What is your cancellation policy?',
-    answer:
-      '24 hours’ notice is required to cancel or reschedule a session. Late cancellations are charged in full due to limited availability.',
-    category: 'Policies',
-  },
-  {
-    id: 'refunds',
-    question: 'Can I get a refund if I change my mind?',
-    answer:
-      'One-off sessions are non-refundable. Refunds for multi-session blocks may be considered only if no sessions have been used and the request is made within 14 days of purchase.',
-    category: 'Policies',
-  },
-  {
-    id: 'nutrition',
-    question: 'Will I get a meal plan or medical advice?',
-    answer:
-      'I do not prescribe diets or provide medical treatment. However, I can support general lifestyle improvements and refer you to other professionals when appropriate.',
-    category: 'Professional Boundaries',
-  },
-  {
-    id: 'results',
-    question: 'How long will it take to see results?',
-    answer:
-      'Progress depends on consistency, lifestyle, and training history. I coach for long-term improvement — strength for life, not quick fixes.',
-    category: 'Expectations',
   },
 ];
 

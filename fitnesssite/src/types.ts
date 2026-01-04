@@ -109,11 +109,15 @@ export interface BaseCheckboxGroupProps {
   hint?: string;
 }
 
+export type FAQCategory = 'The Basics' | 'Fine Print' | 'Personal Touch';
+
 export interface FAQItem {
   id: string;
+  category: FAQCategory;
   question: string;
-  answer: string;
-  category?: string;
+  answer?: string;
+  answerHtml?: string;
 }
+
 
 
