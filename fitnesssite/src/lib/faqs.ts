@@ -22,6 +22,13 @@ export const FAQ_ITEMS: FAQItem[] = [
     answer:
       `Most 1-to-1 and 2-to-1 sessions take place at My Fit Pod, Kingston. It’s a private space that allows us to focus on your training without the distractions of a crowded commercial gym.`,
   },
+    {
+    id: 'payment',
+    category: 'The Basics',
+    question: 'How do I make payments?',
+    answer:
+      `All Payments will be made by bank transfer and have to be paid before any training takes place. I can also take contactless payments on site. All payments will be provided with an email receipt.`,
+  },
   {
     id: 'results',
     category: 'The Basics',
@@ -85,6 +92,6 @@ export const FAQ_ITEMS: FAQItem[] = [
     category: 'Personal Touch',
     question: 'How do we stay in touch between sessions?',
     answer:
-      'We can communicate via WhatsApp or the booking app for scheduling and quick questions. For online coaching clients, we have scheduled check-ins to review progress and form videos.',
+      'We can communicate via WhatsApp or email for scheduling and quick questions. For online coaching clients, we have scheduled check-ins to review progress and form videos.',
   },
 ];
