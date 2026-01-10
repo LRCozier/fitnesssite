@@ -6,7 +6,7 @@ export const SITE_CONFIG = {
   name: 'L.A.C. Fitness',
   title: 'Luke Cozier - Strength & Conditioning | Kingston Upon Thames',
   description:
-    'Professional strength and conditioning training focused on skill progression, confidence, and functional strength. Based in Richmond Upon Thames.',
+    'Professional strength and conditioning training focused on skill progression, confidence, and functional strength. Based in Kingston Upon Thames.',
   url: 'https://lacfitness.com',
   author: 'Luke Cozier',
   location: 'Kingston Upon Thames, London',
