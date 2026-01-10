@@ -12,7 +12,7 @@ const routes: RouteRecordRaw[] = [
     path: '/',
     name: 'home',
     component: HomeView,
-    meta: { title: 'LAC Fitness - Strength & Conditioning | Richmond Upon Thames' },
+    meta: { title: 'LAC Fitness - Strength & Conditioning | Kingston Upon Thames' },
   },
   {
     path: '/about',
