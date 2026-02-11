@@ -2,8 +2,8 @@
   <section class="section animate-fade-in">
     <div class="container container-sm">
       <header class="section-header section-header--center">
-        <h1 class="page-title">ABOUT LUKE COZIER</h1>
-        <p class="page-subtitle">Personal Trainer</p>
+        <h1 class="page-title">ABOUT LUKE COZIER, MCIMSPA</h1>
+        <p class="page-subtitle">CIMSPA Registered Personal Trainer</p>
       </header>
 
       <div class="about-grid">
@@ -58,10 +58,10 @@
             I specialise in evidence-based strength training that prioritises:
           </p>
           <ul>
-            <li>Compound movements</li>
-            <li>Progressive overload</li>
-            <li>Technique and safety</li>
-            <li>Long-term physical and mental resilience</li>
+            <li>Compound Movements: Mastering the basics that give the biggest return.</li>
+            <li>Progressive Overload: A structured path to getting stronger, safely.</li>
+            <li>Technique First: Safety and longevity over ego lifting.</li>
+            <li>Resilience: Building a body and mind that can handle life’s challenges.</li>
           </ul>
           <p>
             This isn’t about punishing yourself for the past.
