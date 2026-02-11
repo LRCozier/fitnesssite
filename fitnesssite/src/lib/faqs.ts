@@ -2,6 +2,12 @@ import type { FAQItem } from '../types';
 
 export const FAQ_ITEMS: FAQItem[] = [
   {
+    id: 'qualifications',
+    category: 'The Basics',
+    question: 'Are you a qualified Personal Trainer?',
+    answer: 'Yes. I am a fully registered CIMSPA Practitioner (Chartered Institute for the Management of Sport and Physical Activity). This means I do not just hold a certificate; I adhere to the UK’s highest standards for professional conduct and safety. It also means I am fully insured and committed to ongoing professional development.'
+  },
+  {
     id: 'services',
     category: 'The Basics',
     question: 'What services do you offer?',
