@@ -1,5 +1,5 @@
 // TYPES
-import type { Testimonials, Service, FooterLink,} from '../types';
+import type { Testimonials, Service, FooterLink, SocialLink} from '../types';
 
 // SITE CONFIGURATION
 export const SITE_CONFIG = {
@@ -191,7 +191,7 @@ export const FOOTER_LOCATIONS: string[] = [
   'Correspondence to: lacfitnessuk@gmail.com',
 ];
 
-export const SOCIAL_LINKS = [
+export const SOCIAL_LINKS: SocialLink[] = [
   {
     label: 'Instagram',
     url: 'https://instagram.com/lacfitnessuk',

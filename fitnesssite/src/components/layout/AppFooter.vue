@@ -35,17 +35,20 @@
         <!-- Social Icons -->
         <div class="footer-socials">
           <a
-            v-for="social in SOCIAL_LINKS"
-            :key="social.label"
-            :href="social.url"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="social-link"
-            :aria-label="social.label"
+          v-for="link in SOCIAL_LINKS"
+          :key="link.label"
+          :href="link.url"
+          target="_blank"
+          rel="noopener"
+          :aria-label="link.label"
+          class="social-link"
           >
-            <component :is="social.icon" size="22" />
-          </a>
-        </div>
+          <component
+          :is="iconMap[link.icon]"
+          class="social-icon"
+          />
+        </a>
+      </div>
 
         <!-- Copyright -->
         <p class="footer-copyright">
@@ -68,8 +71,14 @@
 
 <script setup lang="ts">
 import { FOOTER_LINKS, FOOTER_LOCATIONS, SOCIAL_LINKS } from '../../lib/constants';
+import { Instagram, Music2 } from 'lucide-vue-next';
+import type { SocialIcon } from '../../types';
 
 const currentYear = new Date().getFullYear();
+const iconMap: Record<SocialIcon, any> = {
+  instagram: Instagram,
+  tiktok: Music2,
+};
 </script>
 
 <style scoped>
@@ -152,4 +161,36 @@ const currentYear = new Date().getFullYear();
     gap: 0.75rem;
   }
 }
+
+.footer-socials {
+  margin-top: 1.5rem;
+  display: flex;
+  justify-content: center;
+  gap: 1.25rem;
+}
+
+.social-link {
+  color: var(--color-text-secondary);
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.social-icon {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.social-link:hover {
+  color: var(--color-accent);
+  transform: translateY(-2px) scale(1.05);
+}
+.footer-badge img {
+  max-width: 140px;
+  transition: transform 0.25s ease, opacity 0.25s ease;
+}
+
+.footer-badge:hover img {
+  transform: scale(1.05);
+  opacity: 0.85;
+}
+
 </style>

@@ -127,6 +127,8 @@ export interface FooterLink {
 export interface SocialLink {
   label: string;
   url: string;
-  icon: string;
+  icon: SocialIcon;
 }
+
+export type SocialIcon = 'instagram' | 'tiktok';
 
