@@ -1,5 +1,5 @@
 // TYPES
-import type { Testimonials, Service,} from '../types';
+import type { Testimonials, Service, FooterLink,} from '../types';
 
 // SITE CONFIGURATION
 export const SITE_CONFIG = {
@@ -177,3 +177,29 @@ export const CONTACT_INFO = {
     'Sunday: 9 AM - 2 PM',
   ],
 } as const;
+
+export const FOOTER_LINKS: FooterLink[] = [
+  { label: 'About', path: '/about' },
+  { label: 'Services', path: '/services' },
+  { label: 'Frequently Asked Questions', path: '/faq' },
+  { label: 'Terms and Conditions', path: '/terms' },
+  { label: 'Contact', path: '/contact' },
+];
+
+export const FOOTER_LOCATIONS: string[] = [
+  'Training clients at: My Fit Pod, Unit 5, the factory, 2 Acre Rd, Kingston upon Thames KT2 6EF',
+  'Correspondence to: lacfitnessuk@gmail.com',
+];
+
+export const SOCIAL_LINKS = [
+  {
+    label: 'Instagram',
+    url: 'https://instagram.com/lacfitnessuk',
+    icon: 'instagram',
+  },
+  {
+    label: 'TikTok',
+    url: 'https://tiktok.com/@lacfitnessuk',
+    icon: 'tiktok',
+  },
+];

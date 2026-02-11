@@ -119,5 +119,14 @@ export interface FAQItem {
   answerHtml?: string;
 }
 
+export interface FooterLink {
+  label: string;
+  path: string;
+}
 
+export interface SocialLink {
+  label: string;
+  url: string;
+  icon: string;
+}
 
