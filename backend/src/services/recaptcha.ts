@@ -1,15 +1,12 @@
-export const verifyCaptcha = async (token: string) => {
-  const response = await fetch(
-    `https://www.google.com/recaptcha/api/siteverify`,
-    {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      body: `secret=${process.env.RECAPTCHA_SECRET}&response=${token}`
-    }
+import { RECAPTCHA_SECRET } from '../config/recaptcha';
+
+export const verifyCaptcha = async (token: string): Promise<boolean> => {
+  const res = await fetch(
+    `https://www.google.com/recaptcha/api/siteverify?secret=${RECAPTCHA_SECRET}&response=${token}`,
+    { method: 'POST' }
   );
 
-  const data = await response.json();
+  const data = await res.json();
 
-  if (!data.success) throw new Error('Captcha failed');
+  return Boolean(data.success);
 };
-
