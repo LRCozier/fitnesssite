@@ -76,7 +76,7 @@
         type="submit"
         variant="primary"
         size="lg"
-        :disabled="isSubmitting || !emailJsReady"
+        :disabled="isSubmitting"
       >
         <span v-if="isSubmitting">Sending…</span>
         <span v-else>Send Message</span>
@@ -97,15 +97,12 @@
 </template>
 
 <script setup lang="ts">
-import { reactive, ref, computed, onMounted } from 'vue';
-import emailjs from '@emailjs/browser';
-
+import { reactive, ref, onMounted } from 'vue';
 import BaseInput from './ui/form/BaseInput.vue';
 import BaseTextArea from './ui/form/BaseTextArea.vue';
 import BaseButton from './ui/BaseButton.vue';
 import BaseCheckboxGroups from './ui/form/BaseCheckboxGroups.vue';
 
-import { getEmailJSConfig, isEmailJSConfigured } from '../lib/emailjs-config';
 import type { FormErrors } from '../types';
 
 type CheckboxOption = {
@@ -147,9 +144,6 @@ const errors = reactive<FormErrors>({});
 const isSubmitting = ref(false);
 const statusMessage = ref('');
 const statusType = ref<'success' | 'error' | ''>('');
-
-const emailConfig = getEmailJSConfig();
-const emailJsReady = computed(() => isEmailJSConfigured());
 
 const recaptchaSiteKey = import.meta.env.VITE_RECAPTCHA_SITE_KEY as string | undefined;
 
@@ -218,7 +212,6 @@ const resetForm = () => {
   }
 };
 
-
 const handleSubmit = async () => {
   const w = window as any;
 
@@ -234,54 +227,53 @@ const handleSubmit = async () => {
     return;
   }
 
-  if (!validateForm()) {
-    return;
-  }
-
-  if (!emailJsReady.value) {
-    statusMessage.value = 'Contact form temporarily unavailable. Please email me directly.';
-    statusType.value = 'error';
-    return;
-  }
+  if (!validateForm()) return;
 
   try {
     isSubmitting.value = true;
     statusMessage.value = '';
     statusType.value = '';
 
-    const params = {
-      name: form.name,
-      email: form.email,
-      phone: form.phone,
-      services: form.services.join(', '),
-      message: form.message,
-      reply_to: form.email,
-      'g-recaptcha-response': token,
-    };
+   const payload = {
+    name: form.name,
+    email: form.email,
+    phone: form.phone,
+    services: form.services.join(', '),
+    message: form.message,
+    captchaToken: token,
+  };
 
-    console.log('[ContactForm] Sending EmailJS params:', params);
+    const response = await fetch(`${import.meta.env.VITE_API_URL}/api/contact`,{
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(payload),
+    });
 
-    await emailjs.send(
-      emailConfig.serviceId,
-      emailConfig.templateId,
-      params,
-      emailConfig.publicKey
-    );
+    const data = await response.json();
+
+    if (!response.ok) {
+      throw new Error(data.error || 'Submission failed');
+    }
 
     statusMessage.value =
       'Thanks for your message — I’ll get back to you as soon as possible.';
     statusType.value = 'success';
 
     resetForm();
-  } catch (error) {
-    console.error('[ContactForm] Failed to send message', error);
+  } catch (err) {
+    console.error(err);
+
     statusMessage.value =
-      'Something went wrong while sending your message. Please try again or email me directly.';
+      'Something went wrong while sending your message. Please try again.';
     statusType.value = 'error';
   } finally {
     isSubmitting.value = false;
   }
 };
+
+
 
 //reCAPTCHA widget
 const initRecaptchaWidget = () => {

@@ -13,5 +13,7 @@ export const submitContactForm = async (req: Request, res: Response) => {
   await sendContactEmail(req.body);
 
   res.json({ success: true });
+  console.log('Incoming payload:', req.body);
+
 };
 
