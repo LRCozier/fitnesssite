@@ -102,33 +102,25 @@ import BaseInput from './ui/form/BaseInput.vue';
 import BaseTextArea from './ui/form/BaseTextArea.vue';
 import BaseButton from './ui/BaseButton.vue';
 import BaseCheckboxGroups from './ui/form/BaseCheckboxGroups.vue';
+import type { CheckboxOption, FormErrors } from '../types';
 
-import type { FormErrors } from '../types';
 
-type CheckboxOption = {
-  value: string;
-  label: string;
-  description?: string;
-};
 
 const serviceOptions: CheckboxOption[] = [
   {
     value: '1-to-1 Personal Training',
     label: '1-to-1 Personal Training',
-    description:
-      'Private strength coaching built around your goals, confidence, and movement.',
+    description: 'Private strength coaching built around your goals, confidence, and movement.',
   },
   {
     value: '2-to-1 Training',
     label: '2-to-1 Small Group Training',
-    description:
-      'Train with a partner or friend for shared motivation and a supportive environment.',
+    description: 'Train with a partner or friend for shared motivation and a supportive environment.',
   },
   {
     value: 'Online Consultations & Programming',
     label: 'Online Consultations & Programming',
-    description:
-      'Remote guidance, tailored programming, and accountability for independent training.',
+    description: 'Remote guidance, tailored programming, and accountability for independent training.',
   },
 ];
 
@@ -152,11 +144,9 @@ const phoneRegex = /^[0-9+().\-\s]{7,20}$/;
 const validateForm = (): boolean => {
   let valid = true;
 
-  errors.name = '';
-  errors.email = '';
-  errors.phone = '';
-  errors.services = '';
-  errors.message = '';
+  Object.keys(errors).forEach(key => {
+    errors[key as keyof FormErrors] = '';
+  });
 
   if (!form.name.trim()) {
     errors.name = 'Please enter your name.';
@@ -199,26 +189,17 @@ const resetForm = () => {
   form.services = [];
   form.message = '';
 
-  errors.name = '';
-  errors.email = '';
-  errors.phone = '';
-  errors.services = '';
-  errors.message = '';
-  errors.captcha = '';
+  Object.keys(errors).forEach(key => {
+    errors[key as keyof FormErrors] = '';
+  });
 
-  const w = window as any;
-  if (w.grecaptcha && typeof w.grecaptcha.reset === 'function') {
-    w.grecaptcha.reset();
+  if (window.grecaptcha && typeof window.grecaptcha.reset === 'function') {
+    window.grecaptcha.reset();
   }
 };
 
 const handleSubmit = async () => {
-  const w = window as any;
-
-  const token =
-    w.grecaptcha && typeof w.grecaptcha.getResponse === 'function'
-      ? w.grecaptcha.getResponse()
-      : '';
+  const token = window.grecaptcha?.getResponse?.() || '';
 
   errors.captcha = '';
 
@@ -234,16 +215,16 @@ const handleSubmit = async () => {
     statusMessage.value = '';
     statusType.value = '';
 
-   const payload = {
-    name: form.name,
-    email: form.email,
-    phone: form.phone,
-    services: form.services.join(', '),
-    message: form.message,
-    captchaToken: token,
-  };
+    const payload = {
+      name: form.name.trim(),
+      email: form.email.trim(),
+      phone: form.phone.trim(),
+      services: form.services,
+      message: form.message.trim(),
+      captcha: token,
+    };
 
-    const response = await fetch(`${import.meta.env.VITE_API_URL}/api/contact`,{
+    const response = await fetch(`${import.meta.env.VITE_API_URL}/api/contact`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -257,43 +238,36 @@ const handleSubmit = async () => {
       throw new Error(data.error || 'Submission failed');
     }
 
-    statusMessage.value =
-      'Thanks for your message — I’ll get back to you as soon as possible.';
+    statusMessage.value = 'Thanks for your message — I’ll get back to you as soon as possible.';
     statusType.value = 'success';
 
     resetForm();
-  } catch (err) {
-    console.error(err);
-
-    statusMessage.value =
-      'Something went wrong while sending your message. Please try again.';
+  } catch (err: any) {
+    console.error('Submission error:', err);
+    statusMessage.value = err.message || 'Something went wrong while sending your message. Please try again.';
     statusType.value = 'error';
   } finally {
     isSubmitting.value = false;
   }
 };
 
-
-
-//reCAPTCHA widget
 const initRecaptchaWidget = () => {
   if (!recaptchaSiteKey) {
     console.warn('[reCAPTCHA] Missing VITE_RECAPTCHA_SITE_KEY – widget will not be rendered.');
     return;
   }
 
-  const w = window as any;
-  if (!w.grecaptcha || typeof w.grecaptcha.render !== 'function') {
+  if (!window.grecaptcha || typeof window.grecaptcha.render !== 'function') {
     return;
   }
 
   const container = document.getElementById('recaptcha-container');
   if (!container) return;
 
-  w.grecaptcha.render(container, {
+  window.grecaptcha.render(container, {
     sitekey: recaptchaSiteKey,
-    callback: (token: string) => {
-      console.log('[reCAPTCHA] Token received (callback):', token);
+    callback: () => {
+      console.log('[reCAPTCHA] Token received');
       errors.captcha = '';
     },
     'expired-callback': () => {
@@ -304,9 +278,7 @@ const initRecaptchaWidget = () => {
 };
 
 onMounted(() => {
-  const w = window as any;
-
-  if (w.grecaptcha && typeof w.grecaptcha.render === 'function') {
+  if (window.grecaptcha && typeof window.grecaptcha.render === 'function') {
     initRecaptchaWidget();
   } else {
     const script = document.querySelector<HTMLScriptElement>(
@@ -314,13 +286,7 @@ onMounted(() => {
     );
 
     if (script) {
-      script.addEventListener(
-        'load',
-        () => {
-          initRecaptchaWidget();
-        },
-        { once: true }
-      );
+      script.addEventListener('load', initRecaptchaWidget, { once: true });
     }
   }
 });
