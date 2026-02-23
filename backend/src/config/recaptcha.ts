@@ -1,1 +1,3 @@
-export const RECAPTCHA_SECRET = process.env.RECAPTCHA_SECRET!;
+import { RECAPTCHA_SECRET } from "./config";
+
+export { RECAPTCHA_SECRET }

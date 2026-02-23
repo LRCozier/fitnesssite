@@ -1,19 +1,28 @@
 import { Request, Response } from 'express';
-import { validateContact } from '../utils/validatecontact';
-import { verifyCaptcha } from '../services/recaptcha';
-import { sendContactEmail } from '../services/email';
+import { ContactSchema } from '../validators/contact.schema';
+import { verifyCaptcha } from '../services/recaptchaService';
+import { sendContactEmail } from '../services/emailService';
 
-export const submitContactForm = async (req: Request, res: Response) => {
-  const error = validateContact(req.body);
-  if (error) return res.status(400).json({ error });
+export const submitContactForm = async (req: Request, res: Response): Promise<any> => {
+  try {
+    const validation = ContactSchema.safeParse(req.body);
+    
+    if (!validation.success) {
+      return res.status(400).json({ error: validation.error.errors[0].message });
+    }
 
-  const captchaValid = await verifyCaptcha(req.body.captchaToken);
-  if (!captchaValid) return res.status(400).json({ error: 'Captcha failed' });
+    const payload = validation.data;
 
-  await sendContactEmail(req.body);
+    const captchaValid = await verifyCaptcha(payload.captcha);
+    if (!captchaValid) {
+      return res.status(400).json({ error: 'Captcha verification failed. Please try again.' });
+    }
 
-  res.json({ success: true });
-  console.log('Incoming payload:', req.body);
+    await sendContactEmail(payload);
 
+    return res.json({ success: true });
+  } catch (error) {
+    console.error('Contact form error:', error);
+    return res.status(500).json({ error: 'Internal server error' });
+  }
 };
-
